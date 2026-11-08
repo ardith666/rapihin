@@ -2,15 +2,89 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <!-- SEO Primary Meta Tags -->
   <title>Rapihin.app — Perapih File Cerdas & Ultra-Ringan Berbasis AI Bawaan macOS</title>
-  <meta name="description" content="Aplikasi macOS ultra-ringan (~1.4MB) untuk merapikan file otomatis berbasis Apple Intelligence & Vision OCR bawaan Mac. 100% lokal, tanpa download LLM eksternal.">
+  <meta name="title" content="Rapihin.app — Perapih File Cerdas & Ultra-Ringan Berbasis AI Bawaan macOS">
+  <meta name="description" content="Aplikasi macOS ultra-ringan (~1.4MB) untuk merapikan file otomatis berbasis Apple Intelligence & Vision OCR bawaan Mac. 100% lokal, aman, tanpa download LLM eksternal.">
+  <meta name="keywords" content="macOS file organizer, Apple Intelligence, local AI, rapikan folder mac, smart file sorter, macOS Sonoma, macOS Sequoia, homebrew cask, anti-slop, zero cloud, file organizer macbook, swift local first">
+  <meta name="author" content="ardith666">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#FFE600">
+  <meta name="apple-mobile-web-app-title" content="Rapihin">
+  <meta name="application-name" content="Rapihin">
+  <link rel="canonical" href="https://ardith666.github.io/rapihin/">
+  
+  <!-- Favicon & Icons -->
   <link rel="icon" type="image/png" href="app-icon.png">
+  <link rel="apple-touch-icon" href="app-icon.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ardith666.github.io/rapihin/">
+  <meta property="og:site_name" content="Rapihin.app">
+  <meta property="og:title" content="Rapihin.app — Perapih File Cerdas & Ultra-Ringan Berbasis AI Bawaan macOS">
+  <meta property="og:description" content="Aplikasi macOS ultra-ringan (~1.4MB) untuk merapikan file otomatis berbasis Apple Intelligence & Vision OCR bawaan Mac. 100% lokal, aman, tanpa download LLM eksternal.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/ardith666/rapihin/main/docs/og-image.png">
+  <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/ardith666/rapihin/main/docs/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rapihin.app — Local-First macOS File Organizer">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ardith666.github.io/rapihin/">
+  <meta name="twitter:title" content="Rapihin.app — Perapih File Cerdas & Ultra-Ringan Berbasis AI Bawaan macOS">
+  <meta name="twitter:description" content="Aplikasi macOS ultra-ringan (~1.4MB) untuk merapikan file otomatis berbasis Apple Intelligence & Vision OCR bawaan Mac. 100% lokal, aman, tanpa download LLM eksternal.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/ardith666/rapihin/main/docs/og-image.png">
+  <meta name="twitter:image:alt" content="Rapihin.app — Banner Pratinjau">
+
+  <!-- Schema.org Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Rapihin",
+        "url": "https://ardith666.github.io/rapihin/",
+        "operatingSystem": "macOS 14.0 Sonoma or later",
+        "applicationCategory": "UtilitiesApplication",
+        "fileSize": "1.4MB",
+        "softwareVersion": "1.0.0",
+        "license": "https://opensource.org/licenses/MIT",
+        "description": "Smart, local-first macOS file organizer powered by native Apple Intelligence, Vision OCR, and NaturalLanguage. Categorizes files in-place with zero external LLM download.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "ardith666",
+          "url": "https://github.com/ardith666"
+        },
+        "downloadUrl": "https://github.com/ardith666/rapihin/releases/download/v1.0.0/Rapihin-1.0.0.dmg",
+        "screenshot": "https://raw.githubusercontent.com/ardith666/rapihin/main/docs/screenshots/dashboard.png"
+      },
+      {
+        "@type": "WebSite",
+        "name": "Rapihin.app",
+        "url": "https://ardith666.github.io/rapihin/",
+        "description": "Situs resmi Rapihin.app — Perapih berkas cerdas lokal untuk macOS."
+      }
+    ]
+  }
+  </script>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 
   <style>
     /* =========================================================
@@ -42,6 +116,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -52,6 +127,7 @@
       background-image: radial-gradient(#000000 1px, transparent 1px);
       background-size: 24px 24px;
       overflow-x: hidden;
+      width: 100%;
     }
 
     /* Container */
@@ -80,6 +156,7 @@
       color: var(--dark);
       transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
       user-select: none;
+      min-height: 48px;
     }
 
     .btn:hover {
@@ -106,7 +183,7 @@
       gap: 6px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       padding: 6px 14px;
       border: 2px solid var(--border);
       border-radius: 999px;
@@ -117,7 +194,7 @@
 
     /* Navbar */
     header {
-      padding: 24px 0;
+      padding: 18px 0;
       border-bottom: var(--border-w) solid var(--border);
       background: var(--bg);
       position: sticky;
@@ -129,6 +206,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
     }
 
     .logo-box {
@@ -137,73 +215,81 @@
       gap: 12px;
       text-decoration: none;
       color: var(--dark);
+      flex-shrink: 0;
     }
 
     .logo-img {
       width: 44px;
       height: 44px;
-      border-radius: 12px;
+      border-radius: 10px;
       border: 2px solid var(--border);
-      box-shadow: 3px 3px 0px var(--border);
+      box-shadow: 2px 2px 0px var(--border);
       object-fit: cover;
+      background: #fff;
     }
 
     .logo-title {
-      font-weight: 900;
       font-size: 1.45rem;
+      font-weight: 900;
       letter-spacing: -0.5px;
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
-      gap: 20px;
       list-style: none;
+      gap: 24px;
+      font-weight: 700;
+      font-size: 0.95rem;
     }
 
     .nav-links a {
-      font-weight: 700;
-      text-decoration: none;
       color: var(--dark);
-      font-size: 0.95rem;
-      transition: color 0.15s;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.15s ease;
     }
 
     .nav-links a:hover {
-      text-decoration: underline;
+      background: var(--yellow);
     }
 
-    /* Hero Section */
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    /* =========================================================
+       HERO SECTION
+       ========================================================= */
     .hero {
-      padding: 70px 0 60px;
+      padding: 60px 0 50px;
       text-align: center;
     }
 
     .hero-badge {
       background: var(--lime);
+      color: #000;
       margin-bottom: 24px;
-      animation: pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 5.5vw, 4.3rem);
+      font-size: clamp(2.1rem, 5.5vw, 3.8rem);
       font-weight: 900;
-      line-height: 1.08;
+      line-height: 1.15;
       letter-spacing: -1.5px;
-      margin-bottom: 24px;
-      max-width: 960px;
+      margin-bottom: 22px;
+      max-width: 950px;
       margin-left: auto;
       margin-right: auto;
+      word-break: break-word;
     }
 
     .highlight-yellow {
       background: var(--yellow);
-      padding: 0 8px;
+      padding: 0 10px;
       border: var(--border-w) solid var(--border);
       display: inline-block;
       box-shadow: var(--shadow-sm);
@@ -212,7 +298,7 @@
 
     .highlight-blue {
       background: var(--blue);
-      padding: 0 8px;
+      padding: 0 10px;
       border: var(--border-w) solid var(--border);
       display: inline-block;
       box-shadow: var(--shadow-sm);
@@ -220,11 +306,12 @@
     }
 
     .hero-subtitle {
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-size: clamp(1.02rem, 2vw, 1.25rem);
       font-weight: 600;
       max-width: 720px;
-      margin: 0 auto 36px;
-      color: #333;
+      margin: 0 auto 32px;
+      color: #2D3748;
+      line-height: 1.6;
     }
 
     .hero-cta {
@@ -232,7 +319,7 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 16px;
       margin-bottom: 28px;
     }
 
@@ -243,14 +330,17 @@
       gap: 12px;
       background: var(--dark);
       color: #fff;
-      padding: 12px 20px;
+      padding: 12px 18px;
       border: var(--border-w) solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       cursor: pointer;
       position: relative;
+      user-select: none;
+      min-height: 48px;
+      max-width: 100%;
     }
 
     .terminal-box:hover {
@@ -258,9 +348,23 @@
       box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0px var(--border);
     }
 
+    .terminal-content {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      white-space: nowrap;
+    }
+
+    .terminal-content::-webkit-scrollbar {
+      display: none;
+    }
+
     .terminal-box code {
       color: var(--lime);
-      user-select: all;
+      font-family: inherit;
+      font-weight: 700;
     }
 
     .copy-btn {
@@ -268,10 +372,18 @@
       color: #fff;
       border: 1.5px solid #555;
       border-radius: 6px;
-      padding: 4px 10px;
+      padding: 6px 12px;
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.5px;
+    }
+
+    .copy-btn:hover {
+      background: #3a3a3a;
+      border-color: #888;
     }
 
     .copy-toast {
@@ -287,25 +399,27 @@
       font-weight: 800;
       display: none;
       box-shadow: 2px 2px 0px #000;
+      z-index: 10;
     }
 
     .hero-meta {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.85rem;
-      font-weight: 600;
-      color: #666;
+      font-weight: 700;
+      color: #555;
+      line-height: 1.6;
     }
 
     /* =========================================================
        ANTI-SLOP MANIFESTO / VALUE PROPS
        ========================================================= */
     .manifesto {
-      padding: 50px 0;
+      padding: 40px 0 60px;
     }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
 
@@ -353,7 +467,7 @@
     .card-desc {
       font-size: 0.95rem;
       color: #444;
-      line-height: 1.55;
+      line-height: 1.6;
       font-weight: 600;
     }
 
@@ -361,27 +475,29 @@
        APP SCREENSHOT SHOWCASE & TABS
        ========================================================= */
     .showcase {
-      padding: 60px 0;
+      padding: 50px 0 70px;
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .section-title {
-      font-size: clamp(2rem, 3.8vw, 2.8rem);
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
       font-weight: 900;
       letter-spacing: -1px;
       margin-bottom: 12px;
+      line-height: 1.2;
     }
 
     .section-desc {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #555;
-      max-width: 600px;
+      max-width: 620px;
       margin: 0 auto;
       font-weight: 600;
+      line-height: 1.6;
     }
 
     .window-mockup {
@@ -399,11 +515,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
     }
 
     .traffic-lights {
       display: flex;
       gap: 8px;
+      flex-shrink: 0;
     }
 
     .dot {
@@ -421,6 +539,12 @@
       gap: 8px;
       overflow-x: auto;
       padding: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .window-tabs::-webkit-scrollbar {
+      display: none;
     }
 
     .tab-btn {
@@ -435,6 +559,8 @@
       box-shadow: 2px 2px 0px var(--border);
       transition: all 0.15s ease;
       white-space: nowrap;
+      flex-shrink: 0;
+      min-height: 38px;
     }
 
     .tab-btn.active {
@@ -476,7 +602,7 @@
     }
 
     .panel-info {
-      padding: 10px;
+      padding: 8px;
     }
 
     .panel-badge {
@@ -486,14 +612,15 @@
     }
 
     .panel-title {
-      font-size: 1.7rem;
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
       font-weight: 900;
       margin-bottom: 12px;
-      line-height: 1.2;
+      line-height: 1.25;
+      letter-spacing: -0.3px;
     }
 
     .panel-text {
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: #444;
       line-height: 1.6;
       font-weight: 600;
@@ -511,8 +638,9 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
+      line-height: 1.4;
     }
 
     .check-icon {
@@ -520,16 +648,18 @@
       background: var(--lime);
       border: 1.5px solid var(--border);
       border-radius: 4px;
-      padding: 2px 5px;
+      padding: 2px 6px;
       font-size: 0.75rem;
       line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
     }
 
     /* =========================================================
        ATOMIC FOLDER ARCHITECTURE SECTION
        ========================================================= */
     .architecture-section {
-      padding: 60px 0;
+      padding: 50px 0;
     }
 
     .arch-card {
@@ -555,11 +685,12 @@
       padding: 20px;
       box-shadow: var(--shadow-sm);
       text-align: center;
+      position: relative;
     }
 
     .step-num {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       background: var(--yellow);
       border: 2px solid var(--border);
       border-radius: 50%;
@@ -569,6 +700,7 @@
       font-weight: 900;
       margin: 0 auto 12px;
       box-shadow: 2px 2px 0px var(--border);
+      font-size: 1.1rem;
     }
 
     .step-title {
@@ -581,21 +713,38 @@
       font-size: 0.88rem;
       color: #555;
       font-weight: 600;
+      line-height: 1.5;
     }
 
     /* Comparison Table */
     .comparison-section {
-      padding: 60px 0;
+      padding: 50px 0;
+    }
+
+    .table-scroll-hint {
+      display: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 8px;
+      text-align: right;
+    }
+
+    .comp-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      background: #fff;
     }
 
     .comp-table {
       width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      border: var(--border-w) solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
+      min-width: 600px;
+      border-collapse: collapse;
       background: #fff;
     }
 
@@ -604,11 +753,13 @@
       border-bottom: 2px solid var(--border);
       text-align: left;
       font-weight: 700;
+      font-size: 0.95rem;
     }
 
     .comp-table th {
       background: #ECEAE4;
-      font-size: 1.05rem;
+      font-size: 1rem;
+      border-bottom: var(--border-w) solid var(--border);
     }
 
     .comp-table tr:last-child td {
@@ -617,21 +768,25 @@
 
     .badge-win {
       background: var(--lime);
-      padding: 4px 8px;
+      padding: 4px 10px;
       border: 1.5px solid var(--border);
       border-radius: 6px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.8rem;
+      display: inline-block;
+      white-space: nowrap;
     }
 
     .badge-bad {
       background: var(--pink);
       color: #fff;
-      padding: 4px 8px;
+      padding: 4px 10px;
       border: 1.5px solid var(--border);
       border-radius: 6px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.8rem;
+      display: inline-block;
+      white-space: nowrap;
     }
 
     /* FAQ */
@@ -642,7 +797,7 @@
     .faq-grid {
       display: grid;
       gap: 16px;
-      max-width: 820px;
+      max-width: 840px;
       margin: 0 auto;
     }
 
@@ -656,13 +811,15 @@
 
     .faq-q {
       padding: 18px 22px;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 800;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
       background: #fff;
+      user-select: none;
     }
 
     .faq-q:hover {
@@ -693,16 +850,155 @@
       gap: 20px;
     }
 
-    /* Responsive */
-    @media (max-width: 860px) {
-      .tab-panel.active {
-        grid-template-columns: 1fr;
+    /* =========================================================
+       MOBILE RESPONSIVE STYLES (MEDIA QUERIES)
+       ========================================================= */
+    @media (max-width: 992px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
       }
       .diagram-grid {
         grid-template-columns: 1fr;
       }
+      .tab-panel.active {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --shadow-offset: 4px;
+        --border-w: 2.5px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      /* Navbar */
       .nav-links {
         display: none;
+      }
+      
+      .logo-title {
+        font-size: 1.25rem;
+      }
+
+      .logo-img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .nav-actions .btn {
+        padding: 8px 14px;
+        font-size: 0.82rem;
+        min-height: 38px;
+      }
+
+      .nav-actions .btn-github-text {
+        display: none;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 40px 0 35px;
+      }
+
+      .hero-title {
+        letter-spacing: -0.8px;
+        line-height: 1.2;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-cta .btn {
+        width: 100%;
+      }
+
+      .terminal-box {
+        width: 100%;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        padding: 10px 14px;
+      }
+
+      .terminal-box code {
+        font-size: 0.82rem;
+      }
+
+      /* Cards & Manifesto */
+      .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .brutal-card {
+        padding: 22px;
+      }
+
+      /* Window Mockup */
+      .window-header {
+        padding: 10px 12px;
+      }
+
+      .window-mockup-appname {
+        display: none;
+      }
+
+      .window-body {
+        padding: 16px;
+      }
+
+      /* Table Scroll Hint */
+      .table-scroll-hint {
+        display: block;
+      }
+
+      .comp-table th, .comp-table td {
+        padding: 12px 14px;
+        font-size: 0.88rem;
+      }
+
+      .arch-card {
+        padding: 22px 18px;
+      }
+
+      .footer-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.85rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.95rem;
+      }
+
+      .btn {
+        font-size: 0.92rem;
+        padding: 12px 18px;
+      }
+
+      .terminal-box {
+        font-size: 0.78rem;
+      }
+
+      .terminal-box code {
+        font-size: 0.75rem;
+      }
+
+      .tab-btn {
+        font-size: 0.78rem;
+        padding: 6px 12px;
       }
     }
   </style>
@@ -710,455 +1006,473 @@
 <body>
 
   <!-- Top Announcement Bar -->
-  <div style="background: var(--dark); color: #fff; padding: 8px 16px; text-align: center; font-weight: 800; font-size: 0.85rem; border-bottom: 2px solid #000;">
-    ⚡ RILIS v1.0.0 TERSEDIA SEKARANG • NATIVE UNTUK macOS SILICON & INTEL • ZERO BLOAT
-  </div>
+  <aside style="background: var(--dark); color: #fff; padding: 8px 14px; text-align: center; font-weight: 800; font-size: 0.82rem; border-bottom: 2px solid #000; letter-spacing: 0.3px;">
+    ⚡ RILIS v1.0.0 TERSEDIA SEKARANG • NATIVE MACOS SONOMA & SEQUOIA • ZERO CLOUD BLOAT
+  </aside>
 
   <!-- Navbar -->
   <header>
     <div class="container nav-wrapper">
-      <a href="#" class="logo-box">
-        <img src="app-icon.png" alt="Rapihin Logo" class="logo-img">
+      <a href="#" class="logo-box" aria-label="Rapihin.app Beranda">
+        <img src="app-icon.png" alt="Rapihin App Icon" class="logo-img" width="44" height="44">
         <span class="logo-title">Rapihin<span style="color: var(--blue);">.app</span></span>
       </a>
 
-      <ul class="nav-links">
-        <li><a href="#fitur">Keunggulan</a></li>
-        <li><a href="#tangkapan-layar">Tangkapan Layar</a></li>
-        <li><a href="#arsitektur">Integritas Folder</a></li>
-        <li><a href="#homebrew">Homebrew Tap</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
+      <nav aria-label="Navigasi Utama">
+        <ul class="nav-links">
+          <li><a href="#fitur">Keunggulan</a></li>
+          <li><a href="#tangkapan-layar">Tangkapan Layar</a></li>
+          <li><a href="#arsitektur">Integritas Folder</a></li>
+          <li><a href="#perbandingan">Perbandingan</a></li>
+          <li><a href="#homebrew">Homebrew Tap</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
 
-      <div style="display: flex; gap: 10px;">
-        <a href="https://github.com/ardith666/rapihin" target="_blank" class="btn btn-white" style="padding: 10px 16px; font-size: 0.88rem;">
-          ⭐ GitHub
+      <div class="nav-actions">
+        <a href="https://github.com/ardith666/rapihin" target="_blank" rel="noopener noreferrer" class="btn btn-white" title="Buka GitHub Repository">
+          <span>⭐</span> <span class="btn-github-text">GitHub</span>
         </a>
-        <a href="https://github.com/ardith666/rapihin/releases/download/v1.0.0/Rapihin-1.0.0.dmg" class="btn btn-yellow" style="padding: 10px 18px; font-size: 0.88rem;">
-          Unduh .DMG
+        <a href="https://github.com/ardith666/rapihin/releases/download/v1.0.0/Rapihin-1.0.0.dmg" class="btn btn-yellow" title="Unduh File DMG Rapihin">
+          <span>Unduh .DMG</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="pill hero-badge">
-        ✨ 100% On-Device AI • Zero External LLM
-      </div>
-
-      <h1 class="hero-title">
-        FOLDER DOWNLOADS LO BERANTAKAN?<br>
-        BIAR <span class="highlight-yellow">AI BAWAAN MAC</span> YANG <span class="highlight-blue">RAPIHIN.</span>
-      </h1>
-
-      <p class="hero-subtitle">
-        Aplikasi macOS <b>ultra-ringan (~1.4MB)</b> yang memanfaatkan <b>Apple Intelligence, Vision OCR, & NaturalLanguage</b>. Merapikan berkas langsung di tempat tanpa mengunduh LLM 8GB yang menguras RAM & baterai MacBook.
-      </p>
-
-      <div class="hero-cta">
-        <a href="https://github.com/ardith666/rapihin/releases/download/v1.0.0/Rapihin-1.0.0.dmg" class="btn btn-yellow" style="font-size: 1.1rem; padding: 16px 32px;">
-          <span>💿 Unduh Installer Rapihin (.dmg)</span>
-        </a>
-
-        <div class="terminal-box" onclick="copyBrewCommand()" title="Klik untuk menyalin perintah">
-          <span style="color: #888;">$</span>
-          <code>brew install --cask ardith666/tap/rapihin</code>
-          <button class="copy-btn" id="copy-btn-label">SALIN</button>
-          <div class="copy-toast" id="toast">✓ TERSALIN!</div>
-        </div>
-      </div>
-
-      <div class="hero-meta">
-        Bebas Bloat • Apple Silicon (M1-M4) & Intel • macOS 14+ Sonoma / 15+ Sequoia • MIT Open Source
-      </div>
-    </div>
-  </section>
-
-  <!-- Anti-Slop / Manifesto Section -->
-  <section class="manifesto" id="fitur">
-    <div class="container">
-      <div class="grid-3">
-        
-        <div class="brutal-card">
-          <div class="card-tag" style="background: var(--yellow);">UKURAN MINI</div>
-          <div class="card-icon">🪶</div>
-          <h3 class="card-title">Bukan Pembobol RAM</h3>
-          <p class="card-desc">
-            Nggak perlu install Ollama atau download model 4GB–16GB yang bikin kipas MacBook meraung. Binary cuma <b>~1.4MB</b> dan konsumsi memori idle cuma <b>~40MB</b>.
-          </p>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="pill hero-badge">
+          ✨ 100% On-Device AI • Zero External LLM
         </div>
 
-        <div class="brutal-card">
-          <div class="card-tag" style="background: var(--blue); color: #fff;">IN-PLACE</div>
-          <div class="card-icon">📂</div>
-          <h3 class="card-title">Rapi Langsung di Tempat</h3>
-          <p class="card-desc">
-            File di <code>Downloads</code> tetap di <code>Downloads</code>, file di <code>Desktop</code> tetap di <code>Desktop</code>. Dikelompokkan ke subfolder kategori di dalamnya tanpa dipindah ke folder lain.
-          </p>
-        </div>
+        <h1 class="hero-title" id="hero-heading">
+          FOLDER DOWNLOADS LO BERANTAKAN?<br>
+          BIAR <span class="highlight-yellow">AI BAWAAN MAC</span> YANG <span class="highlight-blue">RAPIHIN.</span>
+        </h1>
 
-        <div class="brutal-card">
-          <div class="card-tag" style="background: var(--lime);">INTEGRITAS DATA</div>
-          <div class="card-icon">🛡️</div>
-          <h3 class="card-title">Folder Tetap Satu Kesatuan</h3>
-          <p class="card-desc">
-            Folder proyek kode, album foto, atau bundle macOS (<code>.app</code>, <code>.pages</code>) <b>tidak akan dipecah</b>. Dipindahkan secara utuh (Atomic Move) ke kategori yang sesuai.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Screenshots Showcase -->
-  <section class="showcase" id="tangkapan-layar">
-    <div class="container">
-      <div class="section-header">
-        <div class="pill" style="background: var(--pink); color: #fff; margin-bottom: 12px;">TANGKAPAN LAYAR NYATA</div>
-        <h2 class="section-title">Lihat Rapihin Beraksi</h2>
-        <p class="section-desc">Dibangun murni dengan SwiftUI modern bergaya liquid glass, responsif 120fps, dan ramah baterai.</p>
-      </div>
-
-      <!-- Mockup Window -->
-      <div class="window-mockup">
-        <div class="window-header">
-          <div class="traffic-lights">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-          </div>
-
-          <div class="window-tabs">
-            <button class="tab-btn active" onclick="switchTab(0)">📊 Beranda & Analisis</button>
-            <button class="tab-btn" onclick="switchTab(1)">📁 Kelola Folder</button>
-            <button class="tab-btn" onclick="switchTab(2)">🕒 Riwayat & Batch Undo</button>
-            <button class="tab-btn" onclick="switchTab(3)">ℹ️ Integritas Folder & Tentang</button>
-            <button class="tab-btn" onclick="switchTab(4)">⚙️ Setelan & Autostart</button>
-            <button class="tab-btn" onclick="switchTab(5)">💎 Menu Bar Widget</button>
-          </div>
-
-          <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700;">Rapihin.app</span>
-        </div>
-
-        <div class="window-body">
-          
-          <!-- Tab 0: Beranda -->
-          <div class="tab-panel active" id="panel-0">
-            <div>
-              <img src="screenshots/dashboard.png" alt="Rapihin Dashboard" class="screen-img">
-            </div>
-            <div class="panel-info">
-              <span class="pill panel-badge">BERANDA & ANALISIS</span>
-              <h3 class="panel-title">Drop Zone Interaktif & Donut Chart Hasil Kerja</h3>
-              <p class="panel-text">
-                Tarik berkas atau folder apa pun langsung ke zona drop. Dasbor menyajikan 3 kartu KPI real-time serta grafik distribusi kategori berkas yang berhasil dirapikan.
-              </p>
-              <ul class="feature-list">
-                <li><span class="check-icon">✓</span> Analisis semantik konten dengan AI bawaan Mac</li>
-                <li><span class="check-icon">✓</span> Penghitung berkas tertunda (*pending count*)</li>
-                <li><span class="check-icon">✓</span> Estimasi waktu produktivitas yang berhasil dihemat</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Tab 1: Folders -->
-          <div class="tab-panel" id="panel-1">
-            <div>
-              <img src="screenshots/folders.png" alt="Kelola Folder" class="screen-img">
-            </div>
-            <div class="panel-info">
-              <span class="pill panel-badge" style="background: var(--blue);">IZIN & OTOMASI</span>
-              <h3 class="panel-title">Mode Otomatis (Real-time) vs Manual</h3>
-              <p class="panel-text">
-                Atur folder mana saja yang ingin dipantau. Pilih mode <b>Otomatis</b> agar setiap ada file baru masuk langsung dirapikan seketika, atau <b>Manual</b> sesuai kendali Anda.
-              </p>
-              <ul class="feature-list">
-                <li><span class="check-icon">✓</span> Izin folder persisten via Security-Scoped Bookmarks</li>
-                <li><span class="check-icon">✓</span> <b>In-Progress Download Guard:</b> Tidak mengutak-atik file unduhan yang belum selesai (.crdownload / .part)</li>
-                <li><span class="check-icon">✓</span> Dukungan folder kustom tanpa batas</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Tab 2: History -->
-          <div class="tab-panel" id="panel-2">
-            <div>
-              <img src="screenshots/history.png" alt="Riwayat Perapihan" class="screen-img">
-            </div>
-            <div class="panel-info">
-              <span class="pill panel-badge" style="background: var(--lime); color: #000;">ANTI DATA-LOSS</span>
-              <h3 class="panel-title">Multi-Pilih, Pilih Semua, & Kembalikan (Batch Undo)</h3>
-              <p class="panel-text">
-                Salah rapikan file? Jangan panik. Rapihin mencatat setiap pemindahan dalam jurnal lokal yang bisa dibatalkan kapan saja.
-              </p>
-              <ul class="feature-list">
-                <li><span class="check-icon">✓</span> Pilih berkas satu per satu dengan checkbox</li>
-                <li><span class="check-icon">✓</span> Tombol <b>Pilih Semua</b> & <b>Kembalikan Terpilih</b></li>
-                <li><span class="check-icon">✓</span> Pintasan Buka Berkas langsung di Finder</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Tab 3: About & Architecture -->
-          <div class="tab-panel" id="panel-3">
-            <div>
-              <img src="screenshots/about.png" alt="Tentang & Diagram Arsitektur" class="screen-img">
-            </div>
-            <div class="panel-info">
-              <span class="pill panel-badge" style="background: var(--yellow); color: #000;">ARSITEKTUR NATIVE</span>
-              <h3 class="panel-title">Pengecekan Update Otomatis & Diagram Integritas Folder</h3>
-              <p class="panel-text">
-                Dilengkapi dengan pemeriksa versi rilis GitHub secara langsung, catatan rilis (changelog), serta diagram alur mengapa Rapihin tidak pernah memecah isi folder proyek.
-              </p>
-              <ul class="feature-list">
-                <li><span class="check-icon">✓</span> Pengecekan versi rilis GitHub 1-klik</li>
-                <li><span class="check-icon">✓</span> Diagram alur visual Atomic Folder Move</li>
-                <li><span class="check-icon">✓</span> Riwayat versi & changelog lengkap</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Tab 4: Settings -->
-          <div class="tab-panel" id="panel-4">
-            <div>
-              <img src="screenshots/settings.png" alt="Pengaturan Rapihin" class="screen-img">
-            </div>
-            <div class="panel-info">
-              <span class="pill panel-badge" style="background: var(--orange); color: #fff;">KONTROL PENUH</span>
-              <h3 class="panel-title">Autostart saat Login & Dwibahasa</h3>
-              <p class="panel-text">
-                Pengaturan native macOS yang rapi dan intuitif. Jalankan senyap saat Mac menyala dan pilih bahasa favorit Anda.
-              </p>
-              <ul class="feature-list">
-                <li><span class="check-icon">✓</span> Integrasi resmi <code>SMAppService</code> macOS</li>
-                <li><span class="check-icon">✓</span> Dukungan <b>Bahasa Indonesia 🇮🇩</b> & <b>English 🇬🇧</b></li>
-                <li><span class="check-icon">✓</span> Format penamaan & pembersihan nama file otomatis</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Tab 5: Menu Bar -->
-          <div class="tab-panel" id="panel-5">
-            <div>
-              <img src="screenshots/menubar.png" alt="Menu Bar Widget" class="screen-img" style="max-width: 320px; margin: 0 auto;">
-            </div>
-            <div class="panel-info">
-              <span class="pill panel-badge">STATUS BAR</span>
-              <h3 class="panel-title">Akses Instan dari Menu Bar macOS</h3>
-              <p class="panel-text">
-                Rapihin hidup senyap di Menu Bar Anda. Cukup satu klik untuk merapikan semua folder seketika atau membuka jendela utama.
-              </p>
-              <ul class="feature-list">
-                <li><span class="check-icon">✓</span> Ikon elegan dengan status real-time</li>
-                <li><span class="check-icon">✓</span> Tombol cepat "Rapikan Sekarang"</li>
-                <li><span class="check-icon">✓</span> Akses cepat ke folder-folder terpantau</li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Atomic Folder Architecture Section -->
-  <section class="architecture-section" id="arsitektur">
-    <div class="container">
-      <div class="arch-card">
-        <div class="pill" style="background: var(--yellow); margin-bottom: 14px;">PENERAPAN MERAPIKAN FOLDER</div>
-        <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.5px;">
-          Bagaimana Jika Berkas Sudah Berupa Folder Utuh?
-        </h2>
-        <p style="font-size: 1.05rem; color: #555; font-weight: 600; line-height: 1.6; max-width: 800px;">
-          Banyak file organizer sembarangan memecah isi folder sehingga proyek web (HTML/CSS/JS) atau dokumen package macOS (<code>.pages</code>, <code>.keynote</code>, <code>.app</code>) jadi rusak total. <b>Rapihin menerapkan pendekatan Atomic Folder Move:</b>
+        <p class="hero-subtitle">
+          Aplikasi macOS <b>ultra-ringan (~1.4MB)</b> yang memanfaatkan <b>Apple Intelligence, Vision OCR, & NaturalLanguage</b> bawaan macOS. Merapikan berkas langsung di tempat tanpa mengunduh model LLM 8GB yang bikin kipas MacBook meraung.
         </p>
 
-        <div class="diagram-grid">
-          <div class="diagram-step">
-            <div class="step-num">1</div>
-            <h4 class="step-title">Folder Terdeteksi</h4>
-            <p class="step-desc">Misal: <code>Downloads/Proyek-Web/</code> yang berisi berkas kode, style, dan aset gambar.</p>
-          </div>
+        <div class="hero-cta">
+          <a href="https://github.com/ardith666/rapihin/releases/download/v1.0.0/Rapihin-1.0.0.dmg" class="btn btn-yellow" style="font-size: 1.05rem; padding: 15px 30px;">
+            <span>💿 Unduh Installer Rapihin (.dmg)</span>
+          </a>
 
-          <div class="diagram-step">
-            <div class="step-num" style="background: var(--blue); color: #fff;">2</div>
-            <h4 class="step-title">Analisis Dominan AI</h4>
-            <p class="step-desc">AI memindai isi internal dan menentukan bahwa mayoritas konteks adalah <b>Code & Projects</b>.</p>
-          </div>
-
-          <div class="diagram-step">
-            <div class="step-num" style="background: var(--lime);">3</div>
-            <h4 class="step-title">Dipindahkan UTUH</h4>
-            <p class="step-desc">Dipindahkan ke <code>Downloads/Code/Proyek-Web/</code>. Struktur berkas di dalamnya 100% aman!</p>
+          <div class="terminal-box" onclick="copyBrewCommand(this)" title="Klik untuk menyalin perintah Homebrew" role="button" tabindex="0">
+            <div class="terminal-content">
+              <span style="color: #888;">$</span>
+              <code>brew install --cask ardith666/tap/rapihin</code>
+            </div>
+            <button class="copy-btn" id="copy-btn-label" aria-label="Salin perintah brew">SALIN</button>
+            <div class="copy-toast" id="toast">✓ TERSALIN!</div>
           </div>
         </div>
 
-        <div style="background: #FAF8F5; border: 2px solid var(--border); border-radius: 10px; padding: 16px; font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 10px;">
-          <span>🔒</span>
-          <span><b>Proteksi Rekursif:</b> Subfolder kategori buatan Rapihin (Finance, Documents, Code, dll) otomatis dilindungi dan tidak akan diproses berulang-ulang.</span>
+        <div class="hero-meta">
+          Bebas Bloat • Apple Silicon (M1-M4) & Intel • macOS 14+ Sonoma / 15+ Sequoia • 100% Bebas Biaya & Open Source
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Comparison Section -->
-  <section class="comparison-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="pill" style="background: var(--blue); color: #fff; margin-bottom: 12px;">PERBANDINGAN NYATA</div>
-        <h2 class="section-title">Kenapa Rapihin Lebih Masuk Akal?</h2>
-      </div>
+    <!-- Anti-Slop / Value Props Section -->
+    <section class="manifesto" id="fitur" aria-labelledby="fitur-heading">
+      <div class="container">
+        <div class="grid-3">
+          
+          <article class="brutal-card">
+            <div class="card-tag" style="background: var(--yellow);">UKURAN MINI</div>
+            <div class="card-icon" aria-hidden="true">🪶</div>
+            <h3 class="card-title">Bukan Pembobol RAM</h3>
+            <p class="card-desc">
+              Nggak perlu install Ollama atau download model 4GB–16GB. Binary cuma <b>~1.4MB</b> dan konsumsi memori idle cuma <b>~40MB</b>.
+            </p>
+          </article>
 
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Kriteria</th>
-            <th>Aplikasi AI Berat Lainnya</th>
-            <th style="background: var(--yellow);">Rapihin.app ✨</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Ukuran Aplikasi & Model</td>
-            <td><span class="badge-bad">4GB – 16GB</span> (Harus download LLM)</td>
-            <td><span class="badge-win">~1.4 MB</span> (Zero model download)</td>
-          </tr>
-          <tr>
-            <td>Konsumsi RAM Idle</td>
-            <td><span class="badge-bad">1.5GB – 4GB+</span> (Ollama / Llama.cpp)</td>
-            <td><span class="badge-win">~40 MB</span> (Hemat baterai)</td>
-          </tr>
-          <tr>
-            <td>Lokasi Pemindahan File</td>
-            <td>Sering dilempar ke folder luar</td>
-            <td><span class="badge-win">In-Place</span> (Tetap di folder asalnya)</td>
-          </tr>
-          <tr>
-            <td>Penanganan Folder Proyek</td>
-            <td>Dipecah-pecah (proyek rusak)</td>
-            <td><span class="badge-win">Atomic</span> (Dipindah utuh tanpa rusak)</td>
-          </tr>
-          <tr>
-            <td>Privasi Data</td>
-            <td>Sebagian mengirim telemetri / cloud</td>
-            <td><span class="badge-win">100% On-Device</span> (Offline aman)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+          <article class="brutal-card">
+            <div class="card-tag" style="background: var(--blue); color: #fff;">IN-PLACE</div>
+            <div class="card-icon" aria-hidden="true">📂</div>
+            <h3 class="card-title">Rapi Langsung di Tempat</h3>
+            <p class="card-desc">
+              File di <code>Downloads</code> tetap di <code>Downloads</code>, file di <code>Desktop</code> tetap di <code>Desktop</code>. Dikelompokkan ke subfolder kategori di dalamnya tanpa dilempar ke folder lain.
+            </p>
+          </article>
 
-  <!-- Homebrew Tap Section -->
-  <section class="manifesto" id="homebrew" style="background: #FAF0D7; border-top: var(--border-w) solid var(--border); border-bottom: var(--border-w) solid var(--border); padding: 70px 0;">
-    <div class="container" style="text-align: center;">
-      <div class="pill" style="background: var(--yellow); margin-bottom: 16px;">PACKAGE MANAGER MACOS</div>
-      <h2 style="font-size: 2.6rem; font-weight: 900; margin-bottom: 16px; letter-spacing: -1px;">
-        Instal Cepat via Homebrew Cask
-      </h2>
-      <p style="font-size: 1.1rem; color: #444; max-width: 620px; margin: 0 auto 30px; font-weight: 600;">
-        Cukup jalankan satu perintah di Terminal macOS Anda untuk mengunduh dan memasang Rapihin secara otomatis.
-      </p>
+          <article class="brutal-card">
+            <div class="card-tag" style="background: var(--lime);">INTEGRITAS DATA</div>
+            <div class="card-icon" aria-hidden="true">🛡️</div>
+            <h3 class="card-title">Folder Tetap Satu Kesatuan</h3>
+            <p class="card-desc">
+              Folder proyek kode, album foto, atau bundle macOS (<code>.app</code>, <code>.pages</code>) <b>tidak akan dipecah</b>. Dipindahkan secara utuh (Atomic Move) ke kategori yang sesuai.
+            </p>
+          </article>
 
-      <div style="max-width: 600px; margin: 0 auto 24px;">
-        <div class="terminal-box" onclick="copyBrewCommand()" style="justify-content: space-between; padding: 16px 24px;">
-          <div>
-            <span style="color: #888;">$ </span>
-            <code style="font-size: 1rem;">brew install --cask ardith666/tap/rapihin</code>
-          </div>
-          <button class="copy-btn">SALIN</button>
         </div>
       </div>
+    </section>
 
-      <p style="font-size: 0.9rem; color: #666; font-family: 'JetBrains Mono', monospace; font-weight: 700;">
-        Formula resmi: <a href="https://github.com/ardith666/homebrew-tap/blob/main/Casks/rapihin.rb" target="_blank" style="color: #000; text-decoration: underline;">ardith666/homebrew-tap/Casks/rapihin.rb</a>
-      </p>
-    </div>
-  </section>
+    <!-- Interactive Screenshots Showcase -->
+    <section class="showcase" id="tangkapan-layar" aria-labelledby="showcase-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="pill" style="background: var(--pink); color: #fff; margin-bottom: 12px;">TANGKAPAN LAYAR ASLI</div>
+          <h2 class="section-title" id="showcase-heading">Lihat Rapihin Beraksi</h2>
+          <p class="section-desc">Dibangun murni dengan SwiftUI modern, responsif 120fps ProMotion, dan hemat baterai tanpa runtime electron.</p>
+        </div>
 
-  <!-- FAQ Section -->
-  <section class="faq-section" id="faq">
-    <div class="container">
-      <div class="section-header">
-        <div class="pill" style="background: var(--purple); color: #fff; margin-bottom: 12px;">TANYA JAWAB</div>
-        <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
+        <!-- Mockup Window -->
+        <div class="window-mockup">
+          <div class="window-header">
+            <div class="traffic-lights" aria-hidden="true">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+
+            <div class="window-tabs" role="tablist" aria-label="Tab screenshot fitur">
+              <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-0" onclick="switchTab(0)">📊 Beranda & Analisis</button>
+              <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-1" onclick="switchTab(1)">📁 Kelola Folder</button>
+              <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-2" onclick="switchTab(2)">🕒 Riwayat & Batch Undo</button>
+              <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-3" onclick="switchTab(3)">ℹ️ Integritas Folder & Tentang</button>
+              <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-4" onclick="switchTab(4)">⚙️ Setelan & Autostart</button>
+              <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-5" onclick="switchTab(5)">💎 Menu Bar Widget</button>
+            </div>
+
+            <span class="window-mockup-appname" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700;">Rapihin.app</span>
+          </div>
+
+          <div class="window-body">
+            
+            <!-- Tab 0: Beranda -->
+            <div class="tab-panel active" id="panel-0" role="tabpanel">
+              <div>
+                <img src="screenshots/dashboard.png" alt="Tangkapan Layar Dashboard Rapihin dengan Donut Chart dan Drop Zone" class="screen-img" loading="lazy">
+              </div>
+              <div class="panel-info">
+                <span class="pill panel-badge">BERANDA & ANALISIS</span>
+                <h3 class="panel-title">Drop Zone Interaktif & Donut Chart Hasil Kerja</h3>
+                <p class="panel-text">
+                  Tarik berkas atau folder apa pun langsung ke zona drop. Dasbor menyajikan 3 kartu KPI real-time serta visualisasi grafik distribusi kategori berkas yang berhasil dirapikan.
+                </p>
+                <ul class="feature-list">
+                  <li><span class="check-icon">✓</span> Analisis semantik konten dengan AI bawaan Mac</li>
+                  <li><span class="check-icon">✓</span> Penghitung berkas tertunda (*pending count*)</li>
+                  <li><span class="check-icon">✓</span> Estimasi waktu produktivitas yang berhasil dihemat</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tab 1: Folders -->
+            <div class="tab-panel" id="panel-1" role="tabpanel">
+              <div>
+                <img src="screenshots/folders.png" alt="Tangkapan Layar Kelola Folder dan Mode Otomatis Real-time" class="screen-img" loading="lazy">
+              </div>
+              <div class="panel-info">
+                <span class="pill panel-badge" style="background: var(--blue); color: #fff;">IZIN & OTOMASI</span>
+                <h3 class="panel-title">Mode Otomatis (Real-time) vs Manual</h3>
+                <p class="panel-text">
+                  Atur folder mana saja yang ingin dipantau. Pilih mode <b>Otomatis</b> agar setiap ada file baru masuk langsung dirapikan seketika, atau <b>Manual</b> sesuai kendali Anda.
+                </p>
+                <ul class="feature-list">
+                  <li><span class="check-icon">✓</span> Izin folder persisten via Security-Scoped Bookmarks</li>
+                  <li><span class="check-icon">✓</span> <b>In-Progress Download Guard:</b> Tidak mengutak-atik file unduhan yang belum selesai (.crdownload / .part)</li>
+                  <li><span class="check-icon">✓</span> Dukungan folder kustom tanpa batas</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tab 2: History -->
+            <div class="tab-panel" id="panel-2" role="tabpanel">
+              <div>
+                <img src="screenshots/history.png" alt="Tangkapan Layar Riwayat Perapihan dengan Multi-Select dan Tombol Kembalikan" class="screen-img" loading="lazy">
+              </div>
+              <div class="panel-info">
+                <span class="pill panel-badge" style="background: var(--lime); color: #000;">ANTI DATA-LOSS</span>
+                <h3 class="panel-title">Multi-Pilih, Pilih Semua, & Kembalikan (Batch Undo)</h3>
+                <p class="panel-text">
+                  Salah rapikan file? Jangan panik. Rapihin mencatat setiap pemindahan dalam jurnal lokal yang bisa dibatalkan kapan saja.
+                </p>
+                <ul class="feature-list">
+                  <li><span class="check-icon">✓</span> Pilih berkas satu per satu dengan checkbox</li>
+                  <li><span class="check-icon">✓</span> Tombol <b>Pilih Semua</b> & <b>Kembalikan Terpilih</b></li>
+                  <li><span class="check-icon">✓</span> Pintasan Buka Berkas langsung di Finder</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tab 3: About & Architecture -->
+            <div class="tab-panel" id="panel-3" role="tabpanel">
+              <div>
+                <img src="screenshots/about.png" alt="Tangkapan Layar Halaman Tentang dan Diagram Integritas Folder" class="screen-img" loading="lazy">
+              </div>
+              <div class="panel-info">
+                <span class="pill panel-badge" style="background: var(--yellow); color: #000;">ARSITEKTUR NATIVE</span>
+                <h3 class="panel-title">Pengecekan Update Otomatis & Diagram Integritas Folder</h3>
+                <p class="panel-text">
+                  Dilengkapi dengan pemeriksa versi rilis GitHub secara langsung, catatan rilis (changelog), serta diagram alur mengapa Rapihin tidak pernah memecah isi folder proyek.
+                </p>
+                <ul class="feature-list">
+                  <li><span class="check-icon">✓</span> Pengecekan versi rilis GitHub 1-klik</li>
+                  <li><span class="check-icon">✓</span> Diagram alur visual Atomic Folder Move</li>
+                  <li><span class="check-icon">✓</span> Riwayat versi & changelog lengkap</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tab 4: Settings -->
+            <div class="tab-panel" id="panel-4" role="tabpanel">
+              <div>
+                <img src="screenshots/settings.png" alt="Tangkapan Layar Pengaturan Autostart saat Login dan Bahasa" class="screen-img" loading="lazy">
+              </div>
+              <div class="panel-info">
+                <span class="pill panel-badge" style="background: var(--orange); color: #fff;">KONTROL PENUH</span>
+                <h3 class="panel-title">Autostart saat Login & Dwibahasa</h3>
+                <p class="panel-text">
+                  Pengaturan native macOS yang rapi dan intuitif. Jalankan senyap saat Mac menyala dan pilih bahasa favorit Anda.
+                </p>
+                <ul class="feature-list">
+                  <li><span class="check-icon">✓</span> Integrasi resmi <code>SMAppService</code> macOS</li>
+                  <li><span class="check-icon">✓</span> Dukungan <b>Bahasa Indonesia 🇮🇩</b> & <b>English 🇬🇧</b></li>
+                  <li><span class="check-icon">✓</span> Format penamaan & pembersihan nama file otomatis</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tab 5: Menu Bar -->
+            <div class="tab-panel" id="panel-5" role="tabpanel">
+              <div>
+                <img src="screenshots/menubar.png" alt="Tangkapan Layar Menu Bar Widget macOS Rapihin" class="screen-img" style="max-width: 320px; margin: 0 auto;" loading="lazy">
+              </div>
+              <div class="panel-info">
+                <span class="pill panel-badge">STATUS BAR</span>
+                <h3 class="panel-title">Akses Instan dari Menu Bar macOS</h3>
+                <p class="panel-text">
+                  Rapihin hidup senyap di Menu Bar Anda. Cukup satu klik untuk merapikan semua folder seketika atau membuka jendela utama.
+                </p>
+                <ul class="feature-list">
+                  <li><span class="check-icon">✓</span> Ikon elegan dengan status real-time</li>
+                  <li><span class="check-icon">✓</span> Tombol cepat "Rapikan Sekarang"</li>
+                  <li><span class="check-icon">✓</span> Akses cepat ke folder-folder terpantau</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="faq-grid">
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFAQ(this)">
-            <span>Apakah Rapihin benar-benar tidak butuh koneksi internet?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-a">
-            Benar 100%. Rapihin memanfaatkan framework bawaan macOS (Vision untuk OCR membaca teks gambar/struk, NaturalLanguage untuk klasifikasi topik dokumen, dan PDFKit). Berkas Anda tidak pernah diunggah ke cloud mana pun.
-          </div>
-        </div>
+    <!-- Atomic Folder Architecture Section -->
+    <section class="architecture-section" id="arsitektur" aria-labelledby="arsitektur-heading">
+      <div class="container">
+        <div class="arch-card">
+          <div class="pill" style="background: var(--yellow); margin-bottom: 14px;">PENERAPAN MERAPIKAN FOLDER</div>
+          <h2 id="arsitektur-heading" style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; margin-bottom: 12px; letter-spacing: -0.5px; line-height: 1.25;">
+            Bagaimana Jika Berkas Sudah Berupa Folder Utuh?
+          </h2>
+          <p style="font-size: 1.02rem; color: #555; font-weight: 600; line-height: 1.6; max-width: 800px;">
+            Banyak file organizer sembarangan memecah isi folder sehingga proyek web (HTML/CSS/JS) atau dokumen package macOS (<code>.pages</code>, <code>.keynote</code>, <code>.app</code>) jadi rusak total. <b>Rapihin menerapkan pendekatan Atomic Folder Move:</b>
+          </p>
 
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFAQ(this)">
-            <span>Bagaimana jika file unduhan saya di browser belum selesai?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-a">
-            Rapihin dilengkapi <i>In-Progress Download Guard</i>. Berkas dengan ekstensi sementara seperti <code>.crdownload</code> (Chrome), <code>.download</code> (Safari), atau <code>.part</code> otomatis diabaikan, dan sistem menunggu hingga aktivitas penulisan berkas selesai seutuhnya sebelum merapikannya.
-          </div>
-        </div>
+          <div class="diagram-grid">
+            <div class="diagram-step">
+              <div class="step-num">1</div>
+              <h3 class="step-title">Folder Terdeteksi</h3>
+              <p class="step-desc">Misal: <code>Downloads/Proyek-Web/</code> yang berisi berkas kode, style, dan aset gambar.</p>
+            </div>
 
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFAQ(this)">
-            <span>Apakah berkas saya aman jika salah dikategorikan?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-a">
-            Sangat aman. Setiap pemindahan berkas dicatat dalam jurnal riwayat lokal. Anda bisa memilih satu per satu berkas atau menekan "Pilih Semua" lalu klik "Kembalikan" untuk memulihkan berkas ke posisi asalnya seketika.
-          </div>
-        </div>
+            <div class="diagram-step">
+              <div class="step-num" style="background: var(--blue); color: #fff;">2</div>
+              <h3 class="step-title">Analisis Dominan AI</h3>
+              <p class="step-desc">AI memindai isi internal dan menentukan bahwa mayoritas konteks adalah <b>Code & Projects</b>.</p>
+            </div>
 
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFAQ(this)">
-            <span>macOS versi berapa saja yang didukung?</span>
-            <span>+</span>
+            <div class="diagram-step">
+              <div class="step-num" style="background: var(--lime);">3</div>
+              <h3 class="step-title">Dipindahkan UTUH</h3>
+              <p class="step-desc">Dipindahkan ke <code>Downloads/Code/Proyek-Web/</code>. Struktur berkas di dalamnya 100% aman!</p>
+            </div>
           </div>
-          <div class="faq-a">
-            Rapihin berjalan mulus di macOS 14.0 Sonoma ke atas, termasuk macOS 15 Sequoia dan macOS 27, baik pada Mac berbasis Apple Silicon (M1, M2, M3, M4) maupun Mac berbasis prosesor Intel.
+
+          <div style="background: #FAF8F5; border: 2px solid var(--border); border-radius: 10px; padding: 16px; font-weight: 700; font-size: 0.92rem; display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.2rem;">🔒</span>
+            <span><b>Proteksi Rekursif:</b> Subfolder kategori buatan Rapihin (Finance, Documents, Code, dll) otomatis dilindungi dan tidak akan diproses berulang-ulang.</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section" id="perbandingan" aria-labelledby="perbandingan-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="pill" style="background: var(--blue); color: #fff; margin-bottom: 12px;">PERBANDINGAN NYATA</div>
+          <h2 class="section-title" id="perbandingan-heading">Kenapa Rapihin Lebih Masuk Akal?</h2>
+        </div>
+
+        <div class="table-scroll-hint" aria-hidden="true">
+          ← Geser tabel ke samping untuk melihat detail →
+        </div>
+
+        <div class="comp-table-wrapper">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th scope="col">Kriteria</th>
+                <th scope="col">Aplikasi AI Berat Lainnya</th>
+                <th scope="col" style="background: var(--yellow);">Rapihin.app ✨</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ukuran Aplikasi & Model</td>
+                <td><span class="badge-bad">4GB – 16GB</span> (Harus download LLM)</td>
+                <td><span class="badge-win">~1.4 MB</span> (Zero model download)</td>
+              </tr>
+              <tr>
+                <td>Konsumsi RAM Idle</td>
+                <td><span class="badge-bad">1.5GB – 4GB+</span> (Ollama / Llama.cpp)</td>
+                <td><span class="badge-win">~40 MB</span> (Hemat baterai)</td>
+              </tr>
+              <tr>
+                <td>Lokasi Pemindahan File</td>
+                <td>Sering dilempar ke folder luar</td>
+                <td><span class="badge-win">In-Place</span> (Tetap di folder asalnya)</td>
+              </tr>
+              <tr>
+                <td>Penanganan Folder Proyek</td>
+                <td>Dipecah-pecah (proyek rusak)</td>
+                <td><span class="badge-win">Atomic</span> (Dipindah utuh tanpa rusak)</td>
+              </tr>
+              <tr>
+                <td>Privasi & Keamanan Data</td>
+                <td>Sebagian mengirim telemetri / cloud</td>
+                <td><span class="badge-win">100% On-Device</span> (Offline aman)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Homebrew Tap Section -->
+    <section class="manifesto" id="homebrew" aria-labelledby="homebrew-heading" style="background: #FAF0D7; border-top: var(--border-w) solid var(--border); border-bottom: var(--border-w) solid var(--border); padding: 60px 0;">
+      <div class="container" style="text-align: center;">
+        <div class="pill" style="background: var(--yellow); margin-bottom: 16px;">PACKAGE MANAGER MACOS</div>
+        <h2 id="homebrew-heading" style="font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.2;">
+          Instal Cepat via Homebrew Cask
+        </h2>
+        <p style="font-size: 1.05rem; color: #444; max-width: 620px; margin: 0 auto 28px; font-weight: 600; line-height: 1.6;">
+          Cukup jalankan satu baris perintah di Terminal macOS Anda untuk mengunduh dan memasang Rapihin secara otomatis.
+        </p>
+
+        <div style="max-width: 580px; margin: 0 auto 20px;">
+          <div class="terminal-box" onclick="copyBrewCommand(this)" style="justify-content: space-between; padding: 14px 18px;" role="button" tabindex="0">
+            <div class="terminal-content">
+              <span style="color: #888;">$ </span>
+              <code style="font-size: 0.95rem;">brew install --cask ardith666/tap/rapihin</code>
+            </div>
+            <button class="copy-btn">SALIN</button>
+          </div>
+        </div>
+
+        <p style="font-size: 0.88rem; color: #666; font-family: 'JetBrains Mono', monospace; font-weight: 700; word-break: break-all;">
+          Formula resmi: <a href="https://github.com/ardith666/homebrew-tap/blob/main/Casks/rapihin.rb" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">ardith666/homebrew-tap/Casks/rapihin.rb</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="pill" style="background: var(--purple); color: #fff; margin-bottom: 12px;">TANYA JAWAB</div>
+          <h2 class="section-title" id="faq-heading">Pertanyaan yang Sering Diajukan</h2>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)" role="button" tabindex="0">
+              <span>Apakah Rapihin benar-benar tidak butuh koneksi internet?</span>
+              <span aria-hidden="true">+</span>
+            </div>
+            <div class="faq-a">
+              Benar 100%. Rapihin memanfaatkan framework bawaan macOS (Vision untuk OCR membaca teks gambar/struk, NaturalLanguage untuk klasifikasi topik dokumen, dan PDFKit). Berkas Anda tidak pernah diunggah ke cloud mana pun.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)" role="button" tabindex="0">
+              <span>Bagaimana jika file unduhan saya di browser belum selesai?</span>
+              <span aria-hidden="true">+</span>
+            </div>
+            <div class="faq-a">
+              Rapihin dilengkapi <i>In-Progress Download Guard</i>. Berkas dengan ekstensi sementara seperti <code>.crdownload</code> (Chrome), <code>.download</code> (Safari), atau <code>.part</code> otomatis diabaikan, dan sistem menunggu hingga aktivitas penulisan berkas selesai seutuhnya sebelum merapikannya.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)" role="button" tabindex="0">
+              <span>Apakah berkas saya aman jika salah dikategorikan?</span>
+              <span aria-hidden="true">+</span>
+            </div>
+            <div class="faq-a">
+              Sangat aman. Setiap pemindahan berkas dicatat dalam jurnal riwayat lokal. Anda bisa memilih satu per satu berkas atau menekan "Pilih Semua" lalu klik "Kembalikan" untuk memulihkan berkas ke posisi asalnya seketika.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)" role="button" tabindex="0">
+              <span>macOS versi berapa saja yang didukung?</span>
+              <span aria-hidden="true">+</span>
+            </div>
+            <div class="faq-a">
+              Rapihin berjalan mulus di macOS 14.0 Sonoma ke atas, termasuk macOS 15 Sequoia dan macOS 27, baik pada Mac berbasis Apple Silicon (M1, M2, M3, M4) maupun Mac berbasis prosesor Intel.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
     <div class="container footer-wrapper">
       <div>
-        <div style="font-size: 1.3rem; font-weight: 900; margin-bottom: 4px;">Rapihin.app</div>
+        <div style="font-size: 1.35rem; font-weight: 900; margin-bottom: 4px;">Rapihin.app</div>
         <div style="font-size: 0.88rem; color: #333;">Perapih Berkas Cerdas & Ringan Berbasis AI Bawaan macOS.</div>
       </div>
 
-      <div style="display: flex; gap: 20px;">
-        <a href="https://github.com/ardith666/rapihin" target="_blank" style="color: #000; text-decoration: underline;">GitHub</a>
-        <a href="https://github.com/ardith666/rapihin/releases" target="_blank" style="color: #000; text-decoration: underline;">Rilis .DMG</a>
-        <a href="https://github.com/ardith666/homebrew-tap" target="_blank" style="color: #000; text-decoration: underline;">Homebrew Tap</a>
-        <a href="https://github.com/ardith666/rapihin/blob/main/LICENSE" target="_blank" style="color: #000; text-decoration: underline;">Lisensi MIT</a>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+        <a href="https://github.com/ardith666/rapihin" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">GitHub</a>
+        <a href="https://github.com/ardith666/rapihin/releases" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">Rilis .DMG</a>
+        <a href="https://github.com/ardith666/homebrew-tap" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">Homebrew Tap</a>
+        <a href="https://github.com/ardith666/rapihin/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">Lisensi MIT</a>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script>
-    function copyBrewCommand() {
+    function copyBrewCommand(boxEl) {
       const cmd = "brew install --cask ardith666/tap/rapihin";
       navigator.clipboard.writeText(cmd).then(() => {
         const toast = document.getElementById("toast");
-        const btn = document.getElementById("copy-btn-label");
+        const btn = boxEl ? boxEl.querySelector(".copy-btn") : document.getElementById("copy-btn-label");
         if (toast) toast.style.display = "block";
-        if (btn) btn.innerText = "✓ TERSALIN";
-        setTimeout(() => {
-          if (toast) toast.style.display = "none";
-          if (btn) btn.innerText = "SALIN";
-        }, 2000);
+        if (btn) {
+          const oldText = btn.innerText;
+          btn.innerText = "✓ TERSALIN";
+          setTimeout(() => {
+            btn.innerText = oldText;
+            if (toast) toast.style.display = "none";
+          }, 2000);
+        }
+      }).catch(err => {
+        console.error("Gagal menyalin perintah: ", err);
       });
     }
 
@@ -1167,7 +1481,9 @@
       const panels = document.querySelectorAll('.tab-panel');
 
       buttons.forEach((btn, i) => {
-        btn.classList.toggle('active', i === index);
+        const isActive = i === index;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
 
       panels.forEach((panel, i) => {
@@ -1178,12 +1494,13 @@
     function toggleFAQ(el) {
       const answer = el.nextElementSibling;
       const icon = el.querySelector('span:last-child');
+      if (!answer) return;
       if (answer.style.display === "none" || answer.style.display === "") {
         answer.style.display = "block";
-        icon.innerText = "−";
+        if (icon) icon.innerText = "−";
       } else {
         answer.style.display = "none";
-        icon.innerText = "+";
+        if (icon) icon.innerText = "+";
       }
     }
   </script>
