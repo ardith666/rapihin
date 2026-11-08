@@ -1,6 +1,6 @@
 cask "rapihin" do
   version "1.0.0"
-  sha256 "89e22c29f224fc2a444a8fef0c5b36c81915d0ba40028a59816a2e88bd091227"
+  sha256 "a449499dba0f73e321cafa49dd8f3177e1a384db9babcd28629d58ba6c835e8e"
 
   url "https://github.com/ardith666/rapihin/releases/download/v#{version}/Rapihin-#{version}.dmg"
   name "Rapihin"

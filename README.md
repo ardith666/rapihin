@@ -44,8 +44,8 @@ Atau unduh berkas installer `Rapihin-1.0.0.dmg` langsung dari [Halaman Rilis Git
 
 <div align="center">
 
-### 🖥️ Dashboard & Drop Zone
-*Area rapih instan dengan estetika modern macOS, indikator berkas tertunda, dan integrasi AI native.*
+### 🖥️ Dashboard, Drop Zone & Analisis Hasil Kerja
+*Area rapih instan dengan estetika modern macOS, indikator berkas tertunda, dan grafik analitik distribusi pekerjaan.*
 ![Rapihin Dashboard](docs/screenshots/dashboard.png)
 
 <br/>
@@ -57,10 +57,10 @@ Atau unduh berkas installer `Rapihin-1.0.0.dmg` langsung dari [Halaman Rilis Git
 
 <br/>
 
-| 🕒 Riwayat & Pulihkan (Undo) | 💎 Menu Bar Drop-Zone |
+| 🕒 Riwayat, Multi-Pilih & Pulihkan | ℹ️ Tentang, Pembaruan & Changelog |
 | :---: | :---: |
-| ![Riwayat](docs/screenshots/history.png) | ![Menu Bar](docs/screenshots/menubar.png) |
-| *Pembatalan perpindahan berkas 1-klik* | *Akses cepat langsung dari status bar macOS* |
+| ![Riwayat](docs/screenshots/history.png) | ![Tentang](docs/screenshots/about.png) |
+| *Pilih satu per satu, Pilih Semua & Kembalikan* | *Auto-update check GitHub rilis & histori versi* |
 
 </div>
 
@@ -75,15 +75,18 @@ Berbeda dari aplikasi AI lain yang mengharuskan Anda mengunduh model LLM ekstern
 ### 🌟 Keunggulan Utama:
 - 🪶 **Sangat Ringan (< 2 MB):** Ukuran aplikasi hanya ~1.4 MB, pemakaian RAM idle hanya ~40 MB. Bebas dari bengkak (*zero bloat*).
 - 🧠 **AI Bawaan macOS (Zero LLM Download):** Memahami konteks invoice, kuitansi, bukti transfer, slip gaji, tangkapan layar, kode proyek, arsip, dan dokumen kerja secara instan tanpa internet dan tanpa unduh model tambahan.
+- 📁 **Rapi Langsung di Tempat (In-Place):** Berkas tetap berada di folder asalnya (misal `Downloads` atau `Desktop`) dan dikelompokkan ke dalam subfolder kategori di dalamnya (default: **Kategori Saja** tanpa memindahkan berkas ke folder luar).
+- 📊 **Analisis Hasil Kerja:** Grafik donut chart visual distribusi kategori berkas yang berhasil dirapikan, total kapasitas tertata, serta estimasi waktu yang dihemat.
 - 📂 **Izin Folder & Mode Per-Folder (Auto vs Manual):**
-  - **Mode Otomatis (Real-time):** Memantau folder (seperti `~/Downloads`) secara senyap. Setiap ada file baru masuk, otomatis dikategorikan. Dilengkapi proteksi jeda unduhan agar file tidak terpotong saat masih diunduh browser.
+  - **Mode Otomatis (Real-time):** Memantau folder secara senyap. Setiap ada file baru masuk, otomatis dikategorikan. Dilengkapi proteksi jeda unduhan agar file tidak terpotong saat masih diunduh browser.
   - **Mode Manual (On-demand):** Folder dipantau jumlah berkasnya, namun hanya dipindahkan ketika Anda menekan tombol *"Rapikan Sekarang"*.
 - ⏱️ **Pengurutan Fleksibel (Created At vs Name):**
-  - Opsi susunan folder hierarkis: `{Kategori}/{Tahun}/{Bulan}` atau `{Tahun}/{Kategori}`.
+  - Opsi susunan folder: Default **Kategori Saja** (`Finance`, `Documents`, `Screenshots`, dll) dengan opsi hierarki waktu.
   - Mempertahankan tanggal pembuatan asli (`Created At`) dan opsi otomatis menyematkan tanggal standar `YYYY-MM-DD` pada nama file.
-- 🚀 **Autostart saat Login (Launch at Login):** Terintegrasi langsung dengan framework modern Apple `SMAppService.mainApp`. Dapat berjalan senyap di Menu Bar saat Mac menyala.
+- 🔄 **Multi-Pilih & 1-Click Undo di Riwayat:** Pilih berkas satu per satu, gunakan tombol **Pilih Semua**, dan **Kembalikan Terpilih** atau **Kembalikan Semua** untuk memulihkan berkas ke posisi asal seketika.
+- 🚀 **Autostart saat Login (Launch at Login):** Terintegrasi langsung dengan framework modern Apple `SMAppService.mainApp` untuk boot senyap di Menu Bar saat Mac menyala.
+- 🆙 **Cek Pembaruan Otomatis & Changelog:** Memeriksa rilis terbaru dari GitHub secara langsung di menu Tentang lengkap dengan riwayat versi.
 - 🌐 **Dua Bahasa (Bilingual UI):** Beralih dengan mudah antara **Bahasa Indonesia 🇮🇩** dan **English 🇬🇧** langsung dari menu pengaturan.
-- 🛡️ **Anti-Hilang Data & 1-Click Undo:** Setiap aksi pemindahan berkas dicatat dalam jurnal riwayat lokal, memungkinkan Anda mengembalikan berkas ke posisi semula (*Command+Z / Tombol Undo*) jika salah taruh.
 
 ---
 
@@ -92,9 +95,12 @@ Berbeda dari aplikasi AI lain yang mengharuskan Anda mengunduh model LLM ekstern
 **Rapihin** is an intelligent, privacy-first file organizer built natively in Swift for macOS. It cleans up cluttered folders like `Downloads` and `Desktop` by categorizing documents, receipts, screenshots, media, and code using **Apple's on-device Intelligence, Vision, and NaturalLanguage frameworks**.
 
 - ⚡ **Zero External Models Needed:** No 8GB LLM downloads, no Ollama daemon running in the background. Runs entirely on Apple Silicon Neural Engine (ANE).
+- 📁 **In-Place Organization:** Keeps files in their original folders and categorizes them into category subfolders by default (`Category Only`).
+- 📊 **Work Performance Analytics:** Interactive donut chart and KPI stats showcasing files organized, storage sorted, and time saved.
 - 📦 **Compact & Native:** Compiled native binary size is just ~1.4 MB with a minimal ~40 MB idle RAM footprint.
 - 🔄 **Real-Time Watcher or On-Demand:** Configure each folder as either *Auto* (instant sorting on arrival with download-completion guards) or *Manual* (tidy with one click).
-- ↩️ **Reversible Moves (Instant Undo):** Complete safety history allows reverting any file movement back to its original path.
+- ↩️ **Batch Reversible Moves (Undo):** Select individual items, *Select All*, and restore selected files back to their original locations.
+- 🆙 **Auto-Update & Changelog:** In-app release checker via GitHub API and version history view.
 - 🇬🇧 🇮🇩 **Bilingual System:** Switch seamlessly between English and Bahasa Indonesia.
 
 ---

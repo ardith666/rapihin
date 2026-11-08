@@ -47,6 +47,11 @@ public final class OrganizerEngine: ObservableObject {
         if let data = UserDefaults.standard.data(forKey: settingsKey),
            let decoded = try? JSONDecoder().decode(AppSettings.self, from: data) {
             self.settings = decoded
+            if UserDefaults.standard.object(forKey: "rapihin_migrated_category_only_v2") == nil {
+                self.settings.subfolderStructure = .categoryOnly
+                UserDefaults.standard.set(true, forKey: "rapihin_migrated_category_only_v2")
+                saveSettings()
+            }
         }
     }
     
@@ -211,21 +216,38 @@ public final class OrganizerEngine: ObservableObject {
         let fm = FileManager.default
         guard fm.fileExists(atPath: sourceURL.path) else { return false }
         
-        // 1. AI Categorize
+        // 1. Resolve base directory: ALWAYS stay in the SAME parent folder!
+        let baseDir = folder?.path ?? sourceURL.deletingLastPathComponent().path
+        
+        // If file is already inside one of the category subfolders, don't move it again
+        let parentDirName = sourceURL.deletingLastPathComponent().lastPathComponent
+        if FileCategory.allCases.contains(where: { $0.folderName == parentDirName }) {
+            return false
+        }
+        
+        // 2. AI Categorize
         let category = await classifier.classify(url: sourceURL)
         
-        // 2. Resolve destination path based on settings
-        let baseDir = folder?.customTargetPath ?? settings.destinationBaseFolder
+        // 3. Resolve destination path based on settings (stays inside baseDir)
         let destinationDir = calculateDestinationDirectory(base: baseDir, category: category, fileURL: sourceURL)
         
-        // Ensure destination directory exists
+        // Guard against moving to the same directory
+        if destinationDir.path == sourceURL.deletingLastPathComponent().path {
+            return false
+        }
+        
+        // Ensure destination directory exists directly inside the current folder
         try? fm.createDirectory(at: destinationDir, withIntermediateDirectories: true, attributes: nil)
         
-        // 3. Resolve formatted file name
+        // 4. Resolve formatted file name
         let targetFileName = formatFileName(for: sourceURL)
         let finalDestinationURL = getUniqueDestinationURL(in: destinationDir, preferredName: targetFileName)
         
-        // 4. Atomic Move
+        if sourceURL.path == finalDestinationURL.path {
+            return false
+        }
+        
+        // 5. Atomic Move
         do {
             let fileSize = (try? fm.attributesOfItem(atPath: sourceURL.path)[.size] as? Int64) ?? 0
             try fm.moveItem(at: sourceURL, to: finalDestinationURL)
@@ -274,6 +296,58 @@ public final class OrganizerEngine: ObservableObject {
     public func clearHistory() {
         history.removeAll()
         saveHistory()
+    }
+    
+    public func undoBatch(ids: Set<UUID>) {
+        for id in ids {
+            if let item = history.first(where: { $0.id == id && !$0.wasUndone }) {
+                undo(item: item)
+            }
+        }
+    }
+    
+    public func undoAll() {
+        let activeItems = history.filter { !$0.wasUndone }
+        for item in activeItems {
+            undo(item: item)
+        }
+    }
+    
+    // MARK: - Work Analytics & Stats
+    public var activeHistoryCount: Int {
+        history.filter { !$0.wasUndone }.count
+    }
+    
+    public var totalOrganizedBytes: Int64 {
+        history.filter { !$0.wasUndone }.reduce(0) { $0 + $1.fileSize }
+    }
+    
+    public var formattedTotalSize: String {
+        let formatter = ByteCountFormatter()
+        formatter.allowedUnits = [.useAll]
+        formatter.countStyle = .file
+        return formatter.string(fromByteCount: totalOrganizedBytes)
+    }
+    
+    public var estimatedTimeSavedString: String {
+        let totalSeconds = activeHistoryCount * 15 // ~15 seconds manual sorting saved per file
+        if totalSeconds < 60 {
+            return "\(totalSeconds) dtk"
+        } else {
+            let minutes = totalSeconds / 60
+            return "\(minutes) mnt"
+        }
+    }
+    
+    public var categoryBreakdown: [CategoryCount] {
+        var dict: [FileCategory: Int] = [:]
+        for item in history where !item.wasUndone {
+            dict[item.category, default: 0] += 1
+        }
+        return FileCategory.allCases.compactMap { cat in
+            let count = dict[cat, default: 0]
+            return count > 0 ? CategoryCount(category: cat, count: count) : nil
+        }
     }
     
     // MARK: - Helpers
@@ -354,5 +428,16 @@ public final class OrganizerEngine: ObservableObject {
         if settings.hapticFeedback {
             NSHapticFeedbackManager.defaultPerformer.perform(.alignment, performanceTime: .default)
         }
+    }
+}
+
+public struct CategoryCount: Identifiable, Sendable {
+    public var id: String { category.rawValue }
+    public let category: FileCategory
+    public let count: Int
+    
+    public init(category: FileCategory, count: Int) {
+        self.category = category
+        self.count = count
     }
 }

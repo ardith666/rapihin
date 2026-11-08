@@ -24,6 +24,11 @@ public struct SettingsView: View {
                 .tabItem {
                     Label(l10n.localized("settings_categories"), systemImage: "sparkles")
                 }
+            
+            AboutView()
+                .tabItem {
+                    Label(l10n.localized("tab_about"), systemImage: "info.circle")
+                }
         }
         .frame(width: 580, height: 440)
         .padding(16)
@@ -94,20 +99,18 @@ public struct SettingsView: View {
     private var sortingTab: some View {
         Form {
             Section {
-                HStack {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(l10n.localized("default_target"))
-                        Text(engine.settings.destinationBaseFolder)
-                            .font(.system(size: 11))
-                            .foregroundColor(.secondary)
-                            .lineLimit(1)
-                            .truncationMode(.middle)
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "arrow.triangle.branch")
+                            .foregroundColor(.blue)
+                        Text(l10n.language == .indonesian ? "Perapihan Langsung di Folder Asal" : "In-Place Organization")
+                            .font(.system(size: 13, weight: .semibold))
                     }
-                    Spacer()
-                    Button(l10n.localized("change_target"), action: chooseTargetDirectory)
-                        .buttonStyle(.bordered)
-                        .controlSize(.small)
+                    Text(l10n.language == .indonesian ? "Berkas tetap berada di folder asalnya (Downloads, Desktop, dll) dan dikelompokkan ke dalam subfolder kategori di dalamnya tanpa dipindahkan ke folder luar." : "Files remain inside their respective original folders (Downloads, Desktop, etc.) and are organized into category subfolders in-place without moving elsewhere.")
+                        .font(.system(size: 11))
+                        .foregroundColor(.secondary)
                 }
+                .padding(.vertical, 4)
                 
                 Picker(l10n.localized("subfolder_structure"), selection: $engine.settings.subfolderStructure) {
                     ForEach(SubfolderStructure.allCases) { item in
@@ -125,7 +128,7 @@ public struct SettingsView: View {
                 .pickerStyle(.menu)
                 .onChange(of: engine.settings.sortStrategy) { _, _ in engine.saveSettings() }
             } header: {
-                Text(l10n.language == .indonesian ? "Lokasi & Hierarki" : "Location & Hierarchy")
+                Text(l10n.language == .indonesian ? "Struktur Subfolder & Pengurutan" : "Subfolder Structure & Sorting")
             }
             
             Section {
@@ -201,18 +204,5 @@ public struct SettingsView: View {
             }
         }
         .padding(16)
-    }
-    
-    private func chooseTargetDirectory() {
-        let panel = NSOpenPanel()
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.allowsMultipleSelection = false
-        panel.prompt = l10n.language == .indonesian ? "Pilih Target" : "Select Target"
-        
-        if panel.runModal() == .OK, let url = panel.url {
-            engine.settings.destinationBaseFolder = url.path
-            engine.saveSettings()
-        }
     }
 }

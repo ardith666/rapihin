@@ -62,10 +62,8 @@ public struct AppSettings: Codable, Equatable, Sendable {
     public var language: AppLanguage = .indonesian
     public var launchAtLogin: Bool = false
     public var startMinimized: Bool = false
-    public var destinationBaseFolder: String = FileManager.default.homeDirectoryForCurrentUser
-        .appendingPathComponent("Documents")
-        .appendingPathComponent("Rapihin").path
-    public var subfolderStructure: SubfolderStructure = .categoryDate
+    public var destinationBaseFolder: String = ""
+    public var subfolderStructure: SubfolderStructure = .categoryOnly
     public var sortStrategy: SortStrategy = .createdAt
     public var prefixDateToName: Bool = false
     public var cleanFileNames: Bool = true

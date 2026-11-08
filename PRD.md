@@ -90,19 +90,29 @@ Sistem pengelolaan izin folder dan otomasi per-folder yang aman dan fleksibel:
     - Menampilkan ringkasan file pending di Menu Bar / widget (contoh: *"8 file baru di Desktop siap dirapikan"*).
     - File hanya dipindahkan saat pengguna menekan tombol *"Rapihkan Sekarang"*, via Shortcut, atau via perintah Siri.
 
-### 4.4 Pengaturan Pengelompokan & Pengurutan (Sorting by Name / Created At)
-Pengguna dapat menentukan struktur pengorganisasian di dalam folder hasil rapihan:
-- **Pengelompokan Waktu Pembuatan (Created At Hierarchy):**
-  - Opsi struktur tanggal fleksibel: `{Kategori}/{YYYY}/{MM}/` (contoh: `Keuangan/2026/11/Invoice-Apple.pdf`).
+### 4.4 Pengaturan Pengelompokan & Pengurutan (In-Place & Category-Only Default)
+Pengguna dapat menentukan struktur pengorganisasian di dalam folder:
+- **Perapihan Langsung di Folder Asal (In-Place Organization):**
+  - Berkas tetap berada di dalam folder asalnya masing-masing (contoh: berkas di `Downloads` dirapikan ke subfolder dalam `Downloads`, berkas di `Desktop` dirapikan ke subfolder dalam `Desktop`), **TIDAK** dipindahkan keluar ke folder lain.
+- **Skema Subfolder Default (Kategori Saja):**
+  - Secara default, berkas dikelompokkan langsung ke dalam subfolder kategori: `{FolderAsal}/{Kategori}/` (contoh: `Downloads/Finance/`, `Downloads/Documents/`, `Desktop/Screenshots/`).
+  - Opsi tambahan: Pengguna tetap dapat mengaktifkan hierarki berbasis tanggal jika diinginkan: `{Kategori}/{YYYY}/{MM}/` atau `{YYYY}/{MM}/{Kategori}/`.
+- **Pengurutan & Penamaan Berkas:**
   - Sorting bawaan dalam folder otomatis mengikuti *Date Created* asli (atribut `btime` / `kMDItemContentCreationDate` dipertahankan secara utuh saat pemindahan).
-- **Penamaan & Pengurutan Berdasarkan Nama (Name Sorting):**
-  - Opsi prefix tanggal terstandar: `YYYY-MM-DD_{NamaAsli}` untuk file yang ingin selalu terurut kronologis secara alfabetis di Finder.
-  - Standarisasi penamaan berbasis konteks AI (opsional, misal: merapikan nama acak tangkapan layar `Screen Shot 2026-11-08 at 20.52.png` menjadi `Screenshot_Dashboard_2026-11-08.png`).
+  - Opsi standarisasi prefix tanggal terstandar: `YYYY-MM-DD_{NamaAsli}` untuk pengurutan kronologis alfabetis di Finder.
 
-### 4.5 Safe Reversible Execution (Anti-Data Loss)
-- **Interactive Dry-Run / Tinjauan Cepat:** Menampilkan preview visual sebelum file dipindahkan (dari `Downloads/invoice_123.pdf` ke `Documents/Keuangan/2026/Invoice/`).
-- **One-Click Instant Undo:** Kemampuan mengembalikan semua file yang baru saja dirapikan ke lokasi asalnya.
-- **Conflict Handling Cerdas:** Jika terdapat nama file kembar, sistem otomatis menyematkan timestamp semantik (misal: `Kontrak_Kerja (Nov 2026).pdf`), bukan menimpa file (*never overwrite*).
+### 4.5 Analisis Hasil Kerja & Dasbor Performa (Work Analytics)
+- **KPI Stat Cards:** Menampilkan total berkas yang aktif dirapikan, total kapasitas penyimpanan yang tertata rapi, dan estimasi waktu yang dihemat pengguna (~15 detik per berkas).
+- **Grafik Distribusi Kategori (Donut Chart):** Visualisasi interaktif berbasis framework `Charts` macOS yang memetakan perbandingan volume antar kategori (Finance, Documents, Screenshots, Code, Media, Archives).
+
+### 4.6 Safe Reversible Execution (Multi-Select & Batch Undo)
+- **Interactive Dry-Run & Jurnal Lokal:** Setiap pemindahan dicatat secara transparan dalam riwayat lokal.
+- **Pilih Satu per Satu & Pilih Semua (Select All):** Pengguna dapat mencentang berkas tertentu atau seluruh berkas di riwayat.
+- **Kembalikan Terpilih (Batch Undo):** Mengembalikan berkas-berkas yang dipilih secara bersamaan ke posisi semula hanya dengan satu klik.
+
+### 4.7 Pembaruan Otomatis & Informasi Versi (Auto-Update & Changelog)
+- **Pemeriksaan Rilis Otomatis:** Integrasi langsung dengan GitHub Releases API (`ardith666/rapihin/releases/latest`) untuk memeriksa ketersediaan versi baru secara instan.
+- **Layar Tentang & Histori Versi:** Menampilkan versi terpasang, status pembaruan, tombol unduh versi baru, dan catatan rilis (*Changelog*) lengkap per versi.
 
 ### 4.6 Autostart saat Login (Launch at Login Engine)
 - **Modern ServiceManagement (`SMAppService`):** Menggunakan API resmi Apple `SMAppService.mainApp` (menggantikan cara legacy plist/LoginItem yang rawan diblokir sistem).

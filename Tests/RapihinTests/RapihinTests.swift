@@ -91,6 +91,37 @@ struct RapihinTests {
         #expect(decoded.hasPermission == true)
     }
 
+    @Test("Test In-Place Organization & Category Only Default")
+    @MainActor
+    func testInPlaceDefaults() async {
+        let engine = OrganizerEngine.shared
+        #expect(engine.settings.subfolderStructure == .categoryOnly)
+        
+        let tempDir = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try? FileManager.default.createDirectory(at: tempDir, withIntermediateDirectories: true)
+        
+        // Create sample file
+        let sampleFile = tempDir.appendingPathComponent("Test_Invoice_Receipt.pdf")
+        try? "Sample Invoice Content".write(to: sampleFile, atomically: true, encoding: .utf8)
+        
+        let success = await engine.organizeSingleFile(sampleFile, from: nil)
+        #expect(success == true)
+        
+        // The file should stay inside tempDir in the Finance subfolder!
+        let expectedSubfolder = tempDir.appendingPathComponent("Finance")
+        let destinationFile = expectedSubfolder.appendingPathComponent("Test_Invoice_Receipt.pdf")
+        #expect(FileManager.default.fileExists(atPath: destinationFile.path))
+        
+        // Test Batch Undo
+        if let record = engine.history.first(where: { $0.newPath == destinationFile.path }) {
+            engine.undoBatch(ids: [record.id])
+            #expect(FileManager.default.fileExists(atPath: sampleFile.path))
+            #expect(!FileManager.default.fileExists(atPath: destinationFile.path))
+        }
+        
+        try? FileManager.default.removeItem(at: tempDir)
+    }
+
     @Test("Generate Real Screenshots for Documentation")
     @MainActor
     func generateDocumentationScreenshots() {
@@ -116,5 +147,6 @@ struct RapihinTests {
         saveSnapshot(SettingsView(), size: CGSize(width: 580, height: 440), name: "settings")
         saveSnapshot(HistoryView(), size: CGSize(width: 700, height: 480), name: "history")
         saveSnapshot(MenuBarView(), size: CGSize(width: 260, height: 280), name: "menubar")
+        saveSnapshot(AboutView(), size: CGSize(width: 580, height: 500), name: "about")
     }
 }

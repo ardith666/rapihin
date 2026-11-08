@@ -77,13 +77,14 @@ public struct MenuBarView: View {
             }
             .buttonStyle(.plain)
             
-            Button(action: {
-                let url = URL(fileURLWithPath: (engine.settings.destinationBaseFolder as NSString).expandingTildeInPath)
-                NSWorkspace.shared.open(url)
-            }) {
-                Label(l10n.localized("target_directory"), systemImage: "folder")
+            if let firstFolder = engine.monitoredFolders.first {
+                Button(action: {
+                    NSWorkspace.shared.open(firstFolder.url)
+                }) {
+                    Label(firstFolder.name, systemImage: "folder")
+                }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
             
             Divider()
             

@@ -42,6 +42,7 @@ public final class LocalizationManager: ObservableObject {
         "tab_folders": "Kelola Folder",
         "tab_history": "Riwayat & Pulihkan",
         "tab_settings": "Pengaturan",
+        "tab_about": "Tentang",
         
         // Dashboard / Drop Zone
         "drop_title": "Tarik File atau Folder ke Sini",
@@ -97,11 +98,24 @@ public final class LocalizationManager: ObservableObject {
         // History & Undo
         "history_title": "Riwayat Perapihan",
         "history_empty": "Belum ada riwayat file yang dirapikan",
-        "undo_button": "Kembalikan (Undo)",
+        "undo_button": "Kembalikan",
         "undo_success": "File berhasil dikembalikan ke lokasi semula",
         "clear_history": "Bersihkan Riwayat",
+        "select_all": "Pilih Semua",
+        "deselect_all": "Batal Pilih",
+        "restore_selected": "Kembalikan Terpilih",
+        "restore_all": "Kembalikan Semua",
         "total_organized": "Total File Dirapikan",
         "total_size": "Total Kapasitas",
+        "in_place_info": "Berkas dirapikan langsung di foldernya masing-masing",
+        
+        // Work Analytics
+        "work_analytics": "Analisis Hasil Kerja",
+        "stat_total_organized": "Total Berkas",
+        "stat_volume": "Kapasitas Tertata",
+        "stat_time_saved": "Waktu Dihemat",
+        "category_distribution": "Distribusi Kategori",
+        "no_data_chart": "Belum ada data analisis. Rapikan berkas untuk melihat grafik.",
         
         // Menu Bar
         "menubar_open": "Buka Rapihin",
@@ -125,6 +139,7 @@ public final class LocalizationManager: ObservableObject {
         "tab_folders": "Folders",
         "tab_history": "History & Undo",
         "tab_settings": "Settings",
+        "tab_about": "About",
         
         // Dashboard / Drop Zone
         "drop_title": "Drop Files or Folders Here",
@@ -180,11 +195,24 @@ public final class LocalizationManager: ObservableObject {
         // History & Undo
         "history_title": "Organization History",
         "history_empty": "No files have been organized yet",
-        "undo_button": "Undo Move",
+        "undo_button": "Restore",
         "undo_success": "File successfully restored to original location",
         "clear_history": "Clear History",
+        "select_all": "Select All",
+        "deselect_all": "Deselect All",
+        "restore_selected": "Restore Selected",
+        "restore_all": "Restore All",
         "total_organized": "Total Files Organized",
         "total_size": "Total Volume",
+        "in_place_info": "Files are organized directly in-place inside their respective folders",
+        
+        // Work Analytics
+        "work_analytics": "Work Performance & Analytics",
+        "stat_total_organized": "Total Files",
+        "stat_volume": "Volume Sorted",
+        "stat_time_saved": "Time Saved",
+        "category_distribution": "Category Distribution",
+        "no_data_chart": "No analytics yet. Organize files to view chart.",
         
         // Menu Bar
         "menubar_open": "Open Rapihin",
