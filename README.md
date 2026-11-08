@@ -26,11 +26,16 @@
 Instal Rapihin secara instan via Homebrew Tap:
 
 ```bash
-# Tambahkan tap ardith666/rapihin
-brew tap ardith666/rapihin
+# Tambahkan tap ardith666/tap
+brew tap ardith666/tap
 
 # Instal aplikasi
 brew install --cask rapihin
+```
+
+Atau cukup 1 baris perintah:
+```bash
+brew install --cask ardith666/tap/rapihin
 ```
 
 Atau unduh berkas installer `Rapihin-1.0.0.dmg` langsung dari [Halaman Rilis GitHub](https://github.com/ardith666/rapihin/releases).
