@@ -19,6 +19,12 @@ mkdir -p "$RESOURCES_DIR"
 cp ".build/out/Products/Release/$APP_NAME" "$MACOS_DIR/$APP_NAME"
 chmod +x "$MACOS_DIR/$APP_NAME"
 
+# Copy Icon if present
+if [ -f "assets/AppIcon.icns" ]; then
+    echo "🎨 Bundling AppIcon.icns into resources..."
+    cp "assets/AppIcon.icns" "$RESOURCES_DIR/AppIcon.icns"
+fi
+
 # Create Info.plist
 cat <<EOF > "$CONTENTS_DIR/Info.plist"
 <?xml version="1.0" encoding="UTF-8"?>

@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/AppIcon_1024.png" width="128" height="128" alt="Rapihin App Icon" style="border-radius: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"/>
+
 # ✨ Rapihin.app
 ### *Smart, Ultra-Lightweight & Local-First File Organizer for macOS*
 **Perapih File Otomatis Cerdas Berbasis AI Bawaan macOS & Apple Intelligence**
@@ -13,11 +15,25 @@
 
 <br/>
 
-[🇮🇩 Bahasa Indonesia](#-fitur-utama--tentang-rapihin) • [🇬🇧 English](#-overview--features-english) • [🚀 Cara Pemakaian](#-panduan-penggunaan-cara-pemakaian) • [🛠️ Instalasi](#-cara-instalasi--kompilasi)
+[🍺 Install via Homebrew](#-instalasi-via-homebrew-cask) • [🇮🇩 Bahasa Indonesia](#-fitur-utama--tentang-rapihin) • [🇬🇧 English](#-overview--features-english) • [🚀 Cara Pemakaian](#-panduan-penggunaan-cara-pemakaian)
 
 ---
 
 </div>
+
+## 🍺 Instalasi via Homebrew Cask
+
+Instal Rapihin secara instan via Homebrew Tap:
+
+```bash
+# Tambahkan tap ardith666/rapihin
+brew tap ardith666/rapihin
+
+# Instal aplikasi
+brew install --cask rapihin
+```
+
+Atau unduh berkas installer `Rapihin-1.0.0.dmg` langsung dari [Halaman Rilis GitHub](https://github.com/ardith666/rapihin/releases).
 
 ## 📸 Antarmuka Aplikasi (Screenshots)
 
