@@ -138,16 +138,24 @@ public final class OrganizerEngine: ObservableObject {
     public func recalculatePendingFiles() {
         let fm = FileManager.default
         var total = 0
+        let categoryNames = Set(FileCategory.allCases.map { $0.folderName })
         
         for folder in monitoredFolders {
             let url = URL(fileURLWithPath: folder.path)
             if let contents = try? fm.contentsOfDirectory(at: url, includingPropertiesForKeys: [.isRegularFileKey], options: [.skipsHiddenFiles]) {
                 for item in contents {
                     var isDir: ObjCBool = false
-                    if fm.fileExists(atPath: item.path, isDirectory: &isDir), !isDir.boolValue {
-                        let ext = item.pathExtension.lowercased()
-                        if ext != "crdownload" && ext != "download" && ext != "part" {
-                            total += 1
+                    if fm.fileExists(atPath: item.path, isDirectory: &isDir) {
+                        let name = item.lastPathComponent
+                        if isDir.boolValue {
+                            if !categoryNames.contains(name) {
+                                total += 1
+                            }
+                        } else {
+                            let ext = item.pathExtension.lowercased()
+                            if ext != "crdownload" && ext != "download" && ext != "part" {
+                                total += 1
+                            }
                         }
                     }
                 }
@@ -195,6 +203,14 @@ public final class OrganizerEngine: ObservableObject {
         for fileURL in files {
             var isDir: ObjCBool = false
             if fm.fileExists(atPath: fileURL.path, isDirectory: &isDir), isDir.boolValue {
+                let name = fileURL.lastPathComponent
+                if FileCategory.allCases.contains(where: { $0.folderName == name }) {
+                    continue
+                }
+                let success = await organizeFolderAsUnit(fileURL, in: folder)
+                if success {
+                    count += 1
+                }
                 continue
             }
             
@@ -209,6 +225,82 @@ public final class OrganizerEngine: ObservableObject {
             }
         }
         return count
+    }
+    
+    @discardableResult
+    public func organizeFolderAsUnit(_ folderURL: URL, in monitoredFolder: MonitoredFolder) async -> Bool {
+        let fm = FileManager.default
+        let folderName = folderURL.lastPathComponent
+        
+        // Guard: Don't organize category folders
+        if FileCategory.allCases.contains(where: { $0.folderName == folderName }) {
+            return false
+        }
+        
+        // Determine dominant category of the folder
+        let category = await determineDominantCategory(for: folderURL)
+        
+        // Destination directory inside the same monitored folder
+        let destinationDir = calculateDestinationDirectory(base: monitoredFolder.path, category: category, fileURL: folderURL)
+        
+        // Guard against moving into itself
+        if destinationDir.path == folderURL.deletingLastPathComponent().path {
+            return false
+        }
+        
+        try? fm.createDirectory(at: destinationDir, withIntermediateDirectories: true)
+        
+        let finalDestinationURL = getUniqueDestinationURL(in: destinationDir, preferredName: folderName)
+        if folderURL.path == finalDestinationURL.path {
+            return false
+        }
+        
+        do {
+            try fm.moveItem(at: folderURL, to: finalDestinationURL)
+            let record = OrganizedItem(
+                originalPath: folderURL.path,
+                newPath: finalDestinationURL.path,
+                fileName: "📁 \(folderName)",
+                category: category,
+                timestamp: Date(),
+                fileSize: 0
+            )
+            history.insert(record, at: 0)
+            saveHistory()
+            return true
+        } catch {
+            print("[OrganizerEngine] Failed to move unified folder: \(error)")
+            return false
+        }
+    }
+    
+    private func determineDominantCategory(for folderURL: URL) async -> FileCategory {
+        let fm = FileManager.default
+        let folderName = folderURL.lastPathComponent.lowercased()
+        
+        // Name-based hints
+        if folderName.contains("code") || folderName.contains("project") || folderName.contains("app") || folderName.contains("web") || folderName.contains("git") {
+            return .code
+        }
+        if folderName.contains("invoice") || folderName.contains("keuangan") || folderName.contains("tagihan") || folderName.contains("slip") || folderName.contains("tax") {
+            return .finance
+        }
+        if folderName.contains("photo") || folderName.contains("foto") || folderName.contains("video") || folderName.contains("music") || folderName.contains("lagu") {
+            return .media
+        }
+        
+        // Sample files inside
+        guard let items = try? fm.contentsOfDirectory(at: folderURL, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) else {
+            return .other
+        }
+        
+        var categoryCounts: [FileCategory: Int] = [:]
+        for item in items.prefix(15) {
+            let cat = await classifier.classify(url: item)
+            categoryCounts[cat, default: 0] += 1
+        }
+        
+        return categoryCounts.max(by: { $0.value < $1.value })?.key ?? .documents
     }
     
     @discardableResult
