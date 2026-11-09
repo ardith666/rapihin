@@ -91,6 +91,35 @@ struct RapihinTests {
         #expect(decoded.hasPermission == true)
     }
 
+    @Test("Test Auto-Organize Delay Configuration and Defaults")
+    @MainActor
+    func testAutoOrganizeDelay() throws {
+        let settings = AppSettings()
+        // Default must be 10 minutes as requested
+        #expect(settings.autoOrganizeDelay == .minutes10)
+        #expect(settings.autoOrganizeDelay.seconds == 600.0)
+        #expect(settings.autoOrganizeDelay.label(for: .indonesian) == "10 Menit (Bawaan)")
+        #expect(settings.autoOrganizeDelay.label(for: .english) == "10 Minutes (Default)")
+        
+        // Verify all delay tiers
+        #expect(AutoOrganizeDelay.instant.seconds == 0.0)
+        #expect(AutoOrganizeDelay.seconds10.seconds == 10.0)
+        #expect(AutoOrganizeDelay.seconds30.seconds == 30.0)
+        #expect(AutoOrganizeDelay.minute1.seconds == 60.0)
+        #expect(AutoOrganizeDelay.minutes5.seconds == 300.0)
+        #expect(AutoOrganizeDelay.minutes10.seconds == 600.0)
+        #expect(AutoOrganizeDelay.minutes30.seconds == 1800.0)
+        #expect(AutoOrganizeDelay.hour1.seconds == 3600.0)
+        
+        // Serialization check
+        var customSettings = AppSettings()
+        customSettings.autoOrganizeDelay = .seconds30
+        let encoded = try JSONEncoder().encode(customSettings)
+        let decoded = try JSONDecoder().decode(AppSettings.self, from: encoded)
+        #expect(decoded.autoOrganizeDelay == .seconds30)
+        #expect(decoded.autoOrganizeDelay.seconds == 30.0)
+    }
+
     @Test("Test In-Place Organization & Category Only Default")
     @MainActor
     func testInPlaceDefaults() async {

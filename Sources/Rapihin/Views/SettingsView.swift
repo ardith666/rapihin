@@ -54,6 +54,25 @@ public struct SettingsView: View {
             }
             
             Section {
+                // Auto-Organize Delay
+                Picker(l10n.localized("settings_auto_delay"), selection: $engine.settings.autoOrganizeDelay) {
+                    ForEach(AutoOrganizeDelay.allCases) { delay in
+                        Text(delay.label(for: l10n.language)).tag(delay)
+                    }
+                }
+                .pickerStyle(.menu)
+                .onChange(of: engine.settings.autoOrganizeDelay) { _, _ in
+                    engine.saveSettings()
+                }
+                
+                Text(l10n.localized("settings_auto_delay_desc"))
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+            } header: {
+                Text(l10n.localized("settings_delay_section"))
+            }
+            
+            Section {
                 // Autostart at Login
                 Toggle(isOn: Binding(
                     get: { autostart.isEnabled },

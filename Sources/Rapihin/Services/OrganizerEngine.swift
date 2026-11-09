@@ -29,15 +29,23 @@ public final class OrganizerEngine: ObservableObject {
     
     // MARK: - Setup & Persistence
     private func setupWatcher() {
+        watcher.delaySeconds = settings.autoOrganizeDelay.seconds
         watcher.onFileDetected = { [weak self] fileURL, folder in
             Task { @MainActor in
                 await self?.organizeSingleFile(fileURL, from: folder)
+            }
+        }
+        watcher.onFolderTriggered = { [weak self] folder in
+            Task { @MainActor in
+                _ = await self?.organizeFilesInFolder(folder)
+                self?.recalculatePendingFiles()
             }
         }
         watcher.startWatching(folders: monitoredFolders)
     }
     
     public func saveSettings() {
+        watcher.delaySeconds = settings.autoOrganizeDelay.seconds
         if let encoded = try? JSONEncoder().encode(settings) {
             UserDefaults.standard.set(encoded, forKey: settingsKey)
         }
@@ -53,6 +61,7 @@ public final class OrganizerEngine: ObservableObject {
                 saveSettings()
             }
         }
+        watcher.delaySeconds = settings.autoOrganizeDelay.seconds
     }
     
     public func saveMonitoredFolders() {

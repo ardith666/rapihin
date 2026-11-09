@@ -8,6 +8,8 @@ public final class FolderWatcher: @unchecked Sendable {
     private let queue = DispatchQueue(label: "com.rapihin.folderwatcher", qos: .utility)
     
     public var onFileDetected: ((URL, MonitoredFolder) -> Void)?
+    public var onFolderTriggered: ((MonitoredFolder) -> Void)?
+    public var delaySeconds: TimeInterval = 600.0 // Default 10 minutes (600s)
     
     private init() {}
     
@@ -67,9 +69,13 @@ public final class FolderWatcher: @unchecked Sendable {
             // Invalidate prior debounce timer for this folder
             self.debounceTimers[folderPath]?.invalidate()
             
-            // Wait 2.5 seconds for file writes/downloads to stabilize
-            self.debounceTimers[folderPath] = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { [weak self] _ in
-                self?.scanAndDispatchNewFiles(in: folder)
+            // Wait configured delay (minimum 2.5s to allow file writes/downloads to stabilize)
+            let waitTime = max(2.5, self.delaySeconds)
+            
+            self.debounceTimers[folderPath] = Timer.scheduledTimer(withTimeInterval: waitTime, repeats: false) { [weak self] _ in
+                guard let self = self else { return }
+                self.onFolderTriggered?(folder)
+                self.scanAndDispatchNewFiles(in: folder)
             }
         }
     }
@@ -85,6 +91,7 @@ public final class FolderWatcher: @unchecked Sendable {
         ) else { return }
         
         let now = Date()
+        let allowableWindow = max(30.0, self.delaySeconds + 60.0)
         
         for fileURL in contents {
             let ext = fileURL.pathExtension.lowercased()
@@ -100,10 +107,10 @@ public final class FolderWatcher: @unchecked Sendable {
                 continue
             }
             
-            // Check file modification time (only process files modified in the last 15 seconds)
+            // Check file modification time
             if let resourceValues = try? fileURL.resourceValues(forKeys: [.contentModificationDateKey]),
                let modDate = resourceValues.contentModificationDate {
-                if now.timeIntervalSince(modDate) < 15.0 {
+                if now.timeIntervalSince(modDate) < allowableWindow {
                     self.onFileDetected?(fileURL, folder)
                 }
             }

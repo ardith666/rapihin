@@ -73,6 +73,9 @@ public final class LocalizationManager: ObservableObject {
         // Settings - General & Autostart
         "settings_general": "Umum & Mulai Otomatis",
         "settings_language": "Bahasa Aplikasi",
+        "settings_delay_section": "Otomasi & Jeda Waktu (Auto-Organize Delay)",
+        "settings_auto_delay": "Jeda Perapihan Otomatis",
+        "settings_auto_delay_desc": "Waktu tunggu setelah berkas baru terdeteksi sebelum mulai merapikan secara otomatis (Bawaan: 10 Menit). Memberi ruang aman saat berkas sedang diedit atau diunduh.",
         "settings_autostart": "Mulai Otomatis saat Login (Launch at Login)",
         "settings_autostart_desc": "Aplikasi akan otomatis berjalan di latar belakang saat Mac menyala",
         "settings_start_minimized": "Mulai Senyap di Menu Bar",
@@ -170,6 +173,9 @@ public final class LocalizationManager: ObservableObject {
         // Settings - General & Autostart
         "settings_general": "General & Autostart",
         "settings_language": "App Language",
+        "settings_delay_section": "Automation & Auto-Organize Delay",
+        "settings_auto_delay": "Auto-Organize Delay",
+        "settings_auto_delay_desc": "Wait time after a new file arrives before automatically organizing (Default: 10 Minutes). Prevents disruption while files are being edited or downloaded.",
         "settings_autostart": "Launch at Login",
         "settings_autostart_desc": "Automatically run in the background when your Mac starts up",
         "settings_start_minimized": "Start Minimized in Menu Bar",

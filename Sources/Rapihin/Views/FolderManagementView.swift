@@ -115,9 +115,9 @@ public struct FolderManagementView: View {
                 .pickerStyle(.segmented)
                 .frame(width: 170)
                 
-                Text(folder.isAuto ? l10n.localized("mode_auto_desc") : l10n.localized("mode_manual_desc"))
+                Text(folder.isAuto ? (l10n.language == .indonesian ? "Otomatis (Jeda: \(engine.settings.autoOrganizeDelay.label(for: l10n.language)))" : "Auto (Delay: \(engine.settings.autoOrganizeDelay.label(for: l10n.language)))") : l10n.localized("mode_manual_desc"))
                     .font(.system(size: 9.5))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(folder.isAuto ? .blue : .secondary)
             }
             
             // Open in Finder

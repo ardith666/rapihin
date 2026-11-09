@@ -58,6 +58,41 @@ public enum SortStrategy: String, CaseIterable, Identifiable, Codable, Sendable 
     }
 }
 
+public enum AutoOrganizeDelay: Int, CaseIterable, Identifiable, Codable, Sendable {
+    case instant = 0
+    case seconds10 = 10
+    case seconds30 = 30
+    case minute1 = 60
+    case minutes5 = 300
+    case minutes10 = 600       // Default 10 menit sesuai permintaan
+    case minutes30 = 1800
+    case hour1 = 3600
+    
+    public var id: Int { rawValue }
+    public var seconds: TimeInterval { TimeInterval(rawValue) }
+    
+    public func label(for language: AppLanguage) -> String {
+        switch self {
+        case .instant:
+            return language == .indonesian ? "Langsung (Tanpa Jeda)" : "Immediate (No Delay)"
+        case .seconds10:
+            return language == .indonesian ? "10 Detik" : "10 Seconds"
+        case .seconds30:
+            return language == .indonesian ? "30 Detik" : "30 Seconds"
+        case .minute1:
+            return language == .indonesian ? "1 Menit" : "1 Minute"
+        case .minutes5:
+            return language == .indonesian ? "5 Menit" : "5 Minutes"
+        case .minutes10:
+            return language == .indonesian ? "10 Menit (Bawaan)" : "10 Minutes (Default)"
+        case .minutes30:
+            return language == .indonesian ? "30 Menit" : "30 Minutes"
+        case .hour1:
+            return language == .indonesian ? "1 Jam" : "1 Hour"
+        }
+    }
+}
+
 public struct AppSettings: Codable, Equatable, Sendable {
     public var language: AppLanguage = .indonesian
     public var launchAtLogin: Bool = false
@@ -65,6 +100,7 @@ public struct AppSettings: Codable, Equatable, Sendable {
     public var destinationBaseFolder: String = ""
     public var subfolderStructure: SubfolderStructure = .categoryOnly
     public var sortStrategy: SortStrategy = .createdAt
+    public var autoOrganizeDelay: AutoOrganizeDelay = .minutes10
     public var prefixDateToName: Bool = false
     public var cleanFileNames: Bool = true
     public var playSounds: Bool = true
